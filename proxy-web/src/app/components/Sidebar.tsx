@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const menuItems = [
   { name: "API List", path: "/api-list" },
   { name: "API 추가", path: "/api-add" },
+  { name: "Logs", path: "/logs" },
 ];
 
 export default function Sidebar() {
