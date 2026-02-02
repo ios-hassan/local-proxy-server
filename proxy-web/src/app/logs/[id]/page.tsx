@@ -32,6 +32,18 @@ export default function LogDetailPage() {
   const [log, setLog] = useState<LogEntry | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // 클립보드 복사 함수
+  const copyToClipboard = async (text: string, fieldName: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedField(fieldName);
+      setTimeout(() => setCopiedField(null), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
 
   useEffect(() => {
     const fetchLog = async () => {
@@ -192,12 +204,22 @@ export default function LogDetailPage() {
 
             {/* Body */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">
-                Body
-                {log.request.body && formatJson(log.request.body).isJson && (
-                  <span className="ml-2 px-1.5 py-0.5 bg-blue-100 text-blue-700 text-xs rounded">JSON</span>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-sm font-semibold text-gray-600">
+                  Body
+                  {log.request.body && formatJson(log.request.body).isJson && (
+                    <span className="ml-2 px-1.5 py-0.5 bg-blue-100 text-blue-700 text-xs rounded">JSON</span>
+                  )}
+                </h3>
+                {log.request.body && (
+                  <button
+                    onClick={() => copyToClipboard(formatJson(log.request.body).formatted, "requestBody")}
+                    className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 rounded transition-colors"
+                  >
+                    {copiedField === "requestBody" ? "Copied!" : "Copy"}
+                  </button>
                 )}
-              </h3>
+              </div>
               {log.request.body ? (
                 <pre className="bg-blue-50 rounded p-3 text-xs overflow-auto text-gray-700">
                   {formatJson(log.request.body).formatted}
@@ -251,12 +273,22 @@ export default function LogDetailPage() {
 
             {/* Body */}
             <div>
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">
-                Body
-                {log.response.body && formatJson(log.response.body).isJson && (
-                  <span className="ml-2 px-1.5 py-0.5 bg-green-100 text-green-700 text-xs rounded">JSON</span>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-sm font-semibold text-gray-600">
+                  Body
+                  {log.response.body && formatJson(log.response.body).isJson && (
+                    <span className="ml-2 px-1.5 py-0.5 bg-green-100 text-green-700 text-xs rounded">JSON</span>
+                  )}
+                </h3>
+                {log.response.body && (
+                  <button
+                    onClick={() => copyToClipboard(formatJson(log.response.body).formatted, "responseBody")}
+                    className="px-2 py-1 text-xs bg-gray-100 hover:bg-gray-200 text-gray-600 rounded transition-colors"
+                  >
+                    {copiedField === "responseBody" ? "Copied!" : "Copy"}
+                  </button>
                 )}
-              </h3>
+              </div>
               {log.response.body ? (
                 <pre className={`rounded p-3 text-xs overflow-auto text-gray-700 ${log.response.isFake ? "bg-purple-50" : "bg-green-50"}`}>
                   {formatJson(log.response.body).formatted}
