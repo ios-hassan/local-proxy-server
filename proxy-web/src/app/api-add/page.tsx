@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function ApiAddPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     baseUrl: "",
     path: "",
@@ -13,6 +14,24 @@ export default function ApiAddPage() {
     fakeResponse: "",
   });
   const [loading, setLoading] = useState(false);
+
+  // URL 파라미터에서 초기값 설정
+  useEffect(() => {
+    const baseUrl = searchParams.get("baseUrl");
+    const path = searchParams.get("path");
+    const query = searchParams.get("query");
+    const body = searchParams.get("body");
+
+    if (baseUrl || path || query || body) {
+      setFormData((prev) => ({
+        ...prev,
+        baseUrl: baseUrl || "",
+        path: path || "",
+        query: query || "",
+        body: body || "",
+      }));
+    }
+  }, [searchParams]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

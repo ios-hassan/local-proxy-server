@@ -145,6 +145,19 @@ export default function LogDetailPage() {
           &larr; Back
         </button>
         <h1 className="text-2xl font-bold">Log Detail</h1>
+        <button
+          onClick={() => {
+            const params = new URLSearchParams();
+            params.set("baseUrl", log.request.baseUrl);
+            params.set("path", log.request.path);
+            if (log.request.query) params.set("query", log.request.query);
+            if (log.request.body) params.set("body", log.request.body);
+            router.push(`/api-add?${params.toString()}`);
+          }}
+          className="ml-auto px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+        >
+          + API 추가하기
+        </button>
       </div>
 
       {/* 요약 정보 */}
