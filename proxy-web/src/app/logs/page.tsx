@@ -270,7 +270,7 @@ export default function LogsPage() {
           onChange={(e) => setFilter(e.target.value)}
           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <label className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
+        <label className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg text-black">
           <input
             type="checkbox"
             checked={autoScroll}

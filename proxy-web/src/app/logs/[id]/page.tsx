@@ -78,13 +78,25 @@ export default function LogDetailPage() {
     }
   };
 
-  // JSON 포맷팅
-  const formatJson = (str: string | null | undefined) => {
-    if (!str) return "";
+  // JSON 포맷팅 (이중 escape된 JSON도 처리)
+  const formatJson = (str: string | null | undefined): { formatted: string; isJson: boolean } => {
+    if (!str) return { formatted: "", isJson: false };
+
     try {
-      return JSON.stringify(JSON.parse(str), null, 2);
+      let parsed = JSON.parse(str);
+
+      // 이중 escape된 JSON 문자열 처리 (예: "{\"key\": \"value\"}")
+      if (typeof parsed === "string") {
+        try {
+          parsed = JSON.parse(parsed);
+        } catch {
+          // 단순 문자열인 경우
+        }
+      }
+
+      return { formatted: JSON.stringify(parsed, null, 2), isJson: true };
     } catch {
-      return str;
+      return { formatted: str, isJson: false };
     }
   };
 
@@ -116,7 +128,7 @@ export default function LogDetailPage() {
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => router.back()}
-          className="px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors text-sm"
+          className="px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors text-sm text-black"
         >
           &larr; Back
         </button>
@@ -153,19 +165,19 @@ export default function LogDetailPage() {
 
       {/* Request / Response 상세 */}
       <div className="flex-1 overflow-auto">
-        <div className="grid grid-cols-2 gap-4 min-h-0">
+        <div className="grid grid-cols-2 gap-4">
           {/* Request */}
-          <div className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col">
+          <div className="bg-white border border-gray-200 rounded-lg p-4">
             <h2 className="text-lg font-semibold mb-4 text-blue-700">Request</h2>
 
             {/* URL 정보 */}
             <div className="mb-4">
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">URL Info</h3>
-              <div className="bg-gray-50 rounded p-3 text-sm space-y-1">
-                <div><span className="text-gray-500">Base URL:</span> {log.request.baseUrl}</div>
-                <div><span className="text-gray-500">Path:</span> {log.request.path}</div>
+              <h3 className="text-sm font-semibold text-gray-800 mb-2">URL Info</h3>
+              <div className="bg-gray-50 rounded p-3 text-sm space-y-2 text-black">
+                <div className="break-all"><span className="text-gray-700 font-medium">Base URL:</span> {log.request.baseUrl}</div>
+                <div className="break-all"><span className="text-gray-700 font-medium">Path:</span> {log.request.path}</div>
                 {log.request.query && (
-                  <div><span className="text-gray-500">Query:</span> {log.request.query}</div>
+                  <div className="break-all"><span className="text-gray-700 font-medium">Query:</span> {log.request.query}</div>
                 )}
               </div>
             </div>
@@ -173,17 +185,22 @@ export default function LogDetailPage() {
             {/* Headers */}
             <div className="mb-4">
               <h3 className="text-sm font-semibold text-gray-600 mb-2">Headers</h3>
-              <pre className="bg-gray-50 rounded p-3 text-xs overflow-auto max-h-48 text-gray-700">
+              <pre className="bg-gray-50 rounded p-3 text-xs overflow-auto text-gray-700">
                 {JSON.stringify(log.request.headers, null, 2)}
               </pre>
             </div>
 
             {/* Body */}
-            <div className="flex-1 min-h-0">
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">Body</h3>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-600 mb-2">
+                Body
+                {log.request.body && formatJson(log.request.body).isJson && (
+                  <span className="ml-2 px-1.5 py-0.5 bg-blue-100 text-blue-700 text-xs rounded">JSON</span>
+                )}
+              </h3>
               {log.request.body ? (
-                <pre className="bg-blue-50 rounded p-3 text-xs overflow-auto max-h-64 text-gray-700">
-                  {formatJson(log.request.body)}
+                <pre className="bg-blue-50 rounded p-3 text-xs overflow-auto text-gray-700">
+                  {formatJson(log.request.body).formatted}
                 </pre>
               ) : (
                 <p className="text-gray-400 text-sm">No body</p>
@@ -192,7 +209,7 @@ export default function LogDetailPage() {
           </div>
 
           {/* Response */}
-          <div className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col">
+          <div className="bg-white border border-gray-200 rounded-lg p-4">
             <h2 className={`text-lg font-semibold mb-4 ${log.response.isFake ? "text-purple-700" : "text-green-700"}`}>
               Response {log.response.isFake && "(Fake)"}
             </h2>
@@ -226,18 +243,23 @@ export default function LogDetailPage() {
             {log.response.headers && (
               <div className="mb-4">
                 <h3 className="text-sm font-semibold text-gray-600 mb-2">Headers</h3>
-                <pre className="bg-gray-50 rounded p-3 text-xs overflow-auto max-h-48 text-gray-700">
+                <pre className="bg-gray-50 rounded p-3 text-xs overflow-auto text-gray-700">
                   {JSON.stringify(log.response.headers, null, 2)}
                 </pre>
               </div>
             )}
 
             {/* Body */}
-            <div className="flex-1 min-h-0">
-              <h3 className="text-sm font-semibold text-gray-600 mb-2">Body</h3>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-600 mb-2">
+                Body
+                {log.response.body && formatJson(log.response.body).isJson && (
+                  <span className="ml-2 px-1.5 py-0.5 bg-green-100 text-green-700 text-xs rounded">JSON</span>
+                )}
+              </h3>
               {log.response.body ? (
-                <pre className={`rounded p-3 text-xs overflow-auto max-h-64 text-gray-700 ${log.response.isFake ? "bg-purple-50" : "bg-green-50"}`}>
-                  {formatJson(log.response.body)}
+                <pre className={`rounded p-3 text-xs overflow-auto text-gray-700 ${log.response.isFake ? "bg-purple-50" : "bg-green-50"}`}>
+                  {formatJson(log.response.body).formatted}
                 </pre>
               ) : (
                 <p className="text-gray-400 text-sm">No body</p>

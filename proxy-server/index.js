@@ -567,7 +567,7 @@ app.all('/', async (req, res) => {
         status: response.status,
         isFake: false,
         headers: responseHeaders,
-        body: responseBody.substring(0, 5000) + (responseBody.length > 5000 ? '... (truncated)' : ''),
+        body: responseBody,
       },
     });
 
