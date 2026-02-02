@@ -36,3 +36,6 @@ coverage/
 *.pem
 *.tsbuildinfo
 .vercel
+
+# Proxy server data
+proxy-server/api-list.json

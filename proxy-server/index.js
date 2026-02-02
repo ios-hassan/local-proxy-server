@@ -1,7 +1,12 @@
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 const PORT = 3000;
+
+// API 목록 저장 파일 경로
+const API_LIST_FILE = path.join(__dirname, 'api-list.json');
 
 // CORS 설정 (proxy-web에서 접근 허용)
 app.use(cors());
@@ -11,36 +16,52 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.raw({ type: '*/*', limit: '10mb' }));
 
-// API 저장소
-const apiList = [
-  {
-    id: 1,
-    baseUrl: 'https://api.example.com',
-    path: '/users',
-    query: '',
-    body: '',
-    fakeResponse: '{"users": [{"id": 1, "name": "John"}, {"id": 2, "name": "Jane"}]}',
-    createdAt: '2024-01-01T00:00:00.000Z',
-  },
-  {
-    id: 2,
-    baseUrl: 'https://api.example.com',
-    path: '/users/1',
-    query: 'include=profile',
-    body: '',
-    fakeResponse: '{"id": 1, "name": "John", "email": "john@example.com"}',
-    createdAt: '2024-01-02T00:00:00.000Z',
-  },
-  {
-    id: 3,
-    baseUrl: 'https://api.example.com',
-    path: '/posts',
-    query: '',
-    body: '{"title": "New Post", "content": "Hello World"}',
-    fakeResponse: '{"id": 100, "title": "New Post", "content": "Hello World", "created": true}',
-    createdAt: '2024-01-03T00:00:00.000Z',
-  },
-];
+// 파일에서 API 목록 로드
+function loadApiList() {
+  try {
+    if (fs.existsSync(API_LIST_FILE)) {
+      const data = fs.readFileSync(API_LIST_FILE, 'utf-8');
+      return JSON.parse(data);
+    }
+  } catch (error) {
+    console.error('[Load Error] API 목록 로드 실패:', error.message);
+  }
+  return [];
+}
+
+// 파일에 API 목록 저장
+function saveApiList() {
+  try {
+    fs.writeFileSync(API_LIST_FILE, JSON.stringify(apiList, null, 2), 'utf-8');
+    console.log(`[Saved] API 목록이 ${API_LIST_FILE}에 저장되었습니다.`);
+  } catch (error) {
+    console.error('[Save Error] API 목록 저장 실패:', error.message);
+  }
+}
+
+// API 저장소 (파일에서 로드)
+let apiList = loadApiList();
+
+// 중복 API 체크 함수
+function isDuplicateApi(baseUrl, apiPath, query, body, excludeId = null) {
+  return apiList.some((api) => {
+    // excludeId가 있으면 해당 API는 제외 (수정 시 자기 자신 제외)
+    if (excludeId !== null && api.id === excludeId) {
+      return false;
+    }
+
+    // baseUrl과 path가 다르면 중복 아님
+    if (api.baseUrl !== baseUrl || api.path !== apiPath) {
+      return false;
+    }
+
+    // query 또는 body 중 하나라도 동일하면 중복
+    const queryMatch = compareQueryStrings(api.query || '', query || '');
+    const bodyMatch = compareBodies(api.body || '', body || '');
+
+    return queryMatch || bodyMatch;
+  });
+}
 
 // API 저장 엔드포인트
 app.post('/api/add-proxy-api', (req, res) => {
@@ -48,6 +69,11 @@ app.post('/api/add-proxy-api', (req, res) => {
 
   if (!baseUrl || !path || !fakeResponse) {
     return res.status(400).json({ error: 'baseUrl, path, fakeResponse는 필수입니다.' });
+  }
+
+  // 중복 체크
+  if (isDuplicateApi(baseUrl, path, query, body)) {
+    return res.status(409).json({ error: '동일한 baseUrl, path, query 또는 body를 가진 API가 이미 존재합니다.' });
   }
 
   const newApi = {
@@ -61,6 +87,7 @@ app.post('/api/add-proxy-api', (req, res) => {
   };
 
   apiList.push(newApi);
+  saveApiList();
   console.log(`[API Added] ${baseUrl}${path}`);
 
   res.status(201).json({ message: 'API가 저장되었습니다.', data: newApi });
@@ -108,6 +135,7 @@ app.put('/api/update-proxy-api/:id', (req, res) => {
     updatedAt: new Date().toISOString(),
   };
 
+  saveApiList();
   console.log(`[API Updated] ${baseUrl}${path}`);
 
   res.json({ message: 'API가 수정되었습니다.', data: apiList[index] });
@@ -123,10 +151,101 @@ app.delete('/api/delete-proxy-api/:id', (req, res) => {
   }
 
   const deleted = apiList.splice(index, 1)[0];
+  saveApiList();
   console.log(`[API Deleted] ${deleted.baseUrl}${deleted.path}`);
 
   res.json({ message: 'API가 삭제되었습니다.', data: deleted });
 });
+
+// 객체를 deep equality로 비교
+function compareObjects(obj1, obj2) {
+  if (typeof obj1 !== typeof obj2) {
+    return false;
+  }
+
+  if (typeof obj1 !== 'object' || obj1 === null) {
+    return obj1 === obj2;
+  }
+
+  if (Array.isArray(obj1) !== Array.isArray(obj2)) {
+    return false;
+  }
+
+  if (Array.isArray(obj1)) {
+    if (obj1.length !== obj2.length) {
+      return false;
+    }
+    for (let i = 0; i < obj1.length; i++) {
+      if (!compareObjects(obj1[i], obj2[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  const keys1 = Object.keys(obj1).sort();
+  const keys2 = Object.keys(obj2).sort();
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  for (const key of keys1) {
+    if (!keys2.includes(key)) {
+      return false;
+    }
+    if (!compareObjects(obj1[key], obj2[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+// body를 파싱하여 key-value로 비교
+function compareBodies(body1, body2) {
+  try {
+    const parsed1 = typeof body1 === 'string' ? JSON.parse(body1) : body1;
+    const parsed2 = typeof body2 === 'string' ? JSON.parse(body2) : body2;
+    return compareObjects(parsed1, parsed2);
+  } catch {
+    // JSON 파싱 실패 시 문자열로 비교
+    const str1 = typeof body1 === 'string' ? body1 : JSON.stringify(body1);
+    const str2 = typeof body2 === 'string' ? body2 : JSON.stringify(body2);
+    return str1 === str2;
+  }
+}
+
+// query string을 key-value로 파싱하여 비교
+function compareQueryStrings(query1, query2) {
+  const params1 = new URLSearchParams(query1);
+  const params2 = new URLSearchParams(query2);
+
+  // 정렬된 키들을 비교
+  const keys1 = [...params1.keys()].sort();
+  const keys2 = [...params2.keys()].sort();
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  for (const key of keys1) {
+    const values1 = params1.getAll(key).sort();
+    const values2 = params2.getAll(key).sort();
+
+    if (values1.length !== values2.length) {
+      return false;
+    }
+
+    for (let i = 0; i < values1.length; i++) {
+      if (values1[i] !== values2[i]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
 
 // apiList에서 매칭되는 API 찾기
 function findMatchingApi(targetUrl, requestBody) {
@@ -142,18 +261,16 @@ function findMatchingApi(targetUrl, requestBody) {
         continue;
       }
 
-      // api.query가 비어있으면 query 비교 스킵, 있으면 비교
+      // api.query가 비어있으면 query 비교 스킵, 있으면 key-value로 파싱하여 비교
       if (api.query && api.query.trim() !== '') {
-        if (api.query !== query) {
+        if (!compareQueryStrings(api.query, query)) {
           continue;
         }
       }
 
-      // api.body가 비어있으면 body 비교 스킵, 있으면 비교
+      // api.body가 비어있으면 body 비교 스킵, 있으면 key-value로 비교
       if (api.body && api.body.trim() !== '') {
-        const apiBody = typeof api.body === 'string' ? api.body : JSON.stringify(api.body);
-        const reqBody = typeof requestBody === 'string' ? requestBody : JSON.stringify(requestBody);
-        if (apiBody !== reqBody) {
+        if (!compareBodies(api.body, requestBody)) {
           continue;
         }
       }
