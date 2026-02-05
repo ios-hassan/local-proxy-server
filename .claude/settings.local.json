@@ -5,7 +5,9 @@
       "Bash(npm install cors)",
       "Bash(ls:*)",
       "Bash(python3:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(curl -s http://localhost:3000/api/mobile-presets/summary)",
+      "Bash(curl:*)"
     ]
   }
 }

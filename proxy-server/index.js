@@ -8,6 +8,9 @@ const PORT = 3000;
 // API 목록 저장 파일 경로
 const API_LIST_FILE = path.join(__dirname, 'api-list.json');
 
+// MobileAPI Preset 디렉토리 경로
+const MOBILE_PRESET_DIR = path.join(__dirname, '..', 'components_by_type');
+
 // 로그 저장소 (메모리)
 const MAX_LOGS = 1000;
 const logs = [];
@@ -269,6 +272,62 @@ app.get('/api/logs/:id', (req, res) => {
   }
 
   res.json(log);
+});
+
+// MobileAPI Preset - 타입 요약 목록 조회
+app.get('/api/mobile-presets/summary', (req, res) => {
+  try {
+    const summaryPath = path.join(MOBILE_PRESET_DIR, 'summary.json');
+    if (!fs.existsSync(summaryPath)) {
+      return res.status(404).json({ error: 'Preset 데이터가 없습니다. 먼저 extract_components_by_type.py를 실행하세요.' });
+    }
+    const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf-8'));
+    res.json(summary);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// MobileAPI Preset - 특정 타입의 데이터 조회
+app.get('/api/mobile-presets/type/:typeName', (req, res) => {
+  try {
+    const { typeName } = req.params;
+    const { source } = req.query; // 'api1', 'api3', 'merged' (default: merged)
+
+    const sourceDir = source || 'merged';
+    const filePath = path.join(MOBILE_PRESET_DIR, sourceDir, `${typeName}.json`);
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: `타입 '${typeName}'을 찾을 수 없습니다.` });
+    }
+
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// MobileAPI Preset - 소스별 타입 목록 조회
+app.get('/api/mobile-presets/sources', (req, res) => {
+  try {
+    const sources = ['api1', 'api3', 'merged'];
+    const result = {};
+
+    for (const source of sources) {
+      const sourceDir = path.join(MOBILE_PRESET_DIR, source);
+      if (fs.existsSync(sourceDir)) {
+        const files = fs.readdirSync(sourceDir)
+          .filter(f => f.endsWith('.json'))
+          .map(f => f.replace('.json', ''));
+        result[source] = files;
+      }
+    }
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // 객체를 deep equality로 비교
