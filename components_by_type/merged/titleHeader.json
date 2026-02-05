@@ -1,0 +1,169 @@
+{
+  "type": "titleHeader",
+  "count": 4,
+  "items": [
+    {
+      "titleHeader": {
+        "title": "이런 상품 어떠세요?",
+        "attributes": {
+          "color": "#2F3438",
+          "textStyle": "body16L20",
+          "weight": "bold",
+          "maxLines": null
+        },
+        "subtitle": null,
+        "badge": {
+          "name": "AD",
+          "description": "오늘의집 광고 상품을 구매한 제휴 업체의 판매 상품입니다.",
+          "style": "ad"
+        },
+        "moreButton": null,
+        "iconButton": null,
+        "insets": null,
+        "backgroundColor": null
+      },
+      "type": "titleHeader",
+      "log": null
+    },
+    {
+      "titleHeader": {
+        "title": "오직, 오늘의집에서",
+        "attributes": {
+          "color": "#2F3438",
+          "textStyle": "body16L20",
+          "weight": "bold",
+          "maxLines": null
+        },
+        "subtitle": null,
+        "badge": null,
+        "moreButton": {
+          "linkButton": {
+            "text": "전체보기",
+            "count": null,
+            "iconName": null,
+            "link": {
+              "landingUrl": "https://store.qa-web.dailyhou.se/exhibitions/13053"
+            },
+            "attributes": null,
+            "icon": null,
+            "layout": null
+          },
+          "type": "linkButton",
+          "log": {
+            "object": {
+              "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+              "pageId": "SRP_STORE",
+              "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+              "objectSection": "단독상품스토어 전체보기",
+              "objectSectionId": "STORE_SRP_ONLY_PRODUCTION",
+              "objectSectionIdx": null,
+              "objectType": null,
+              "objectIdx": null,
+              "objectId": null,
+              "objectUrl": null,
+              "data": null
+            },
+            "categories": [
+              "click"
+            ],
+            "userActions": null
+          }
+        },
+        "iconButton": {
+          "iconButton": {
+            "icon": {
+              "name": "info",
+              "size": 16,
+              "color": "foregroundDisabled"
+            },
+            "selectedIcon": null,
+            "alignment": "left",
+            "action": {
+              "contentTooltip": {
+                "description": "AI가 요약한 상품명으로 \"실제 상품 정보\"와 차이가 있을 수 있어 정확한 내용은 상세 페이지를 확인해주세요"
+              },
+              "type": "contentTooltip",
+              "url": null
+            },
+            "isSelected": false,
+            "number": null,
+            "numberAttributes": null,
+            "spacing": null
+          },
+          "type": "iconButton",
+          "log": null
+        },
+        "insets": null,
+        "backgroundColor": null
+      },
+      "type": "titleHeader",
+      "log": null
+    },
+    {
+      "titleHeader": {
+        "title": "새로운 취향을 발견해보세요",
+        "attributes": {
+          "color": "#2F3438",
+          "textStyle": "body16L20",
+          "weight": "bold",
+          "maxLines": null
+        },
+        "subtitle": null,
+        "badge": null,
+        "moreButton": null,
+        "iconButton": {
+          "iconButton": {
+            "icon": {
+              "name": "info",
+              "size": 16,
+              "color": "foregroundDisabled"
+            },
+            "selectedIcon": null,
+            "alignment": "left",
+            "action": {
+              "contentTooltip": {
+                "description": "AI가 요약한 상품명으로 \"실제 상품 정보\"와 차이가 있을 수 있어 정확한 내용은 상세 페이지를 확인해주세요"
+              },
+              "type": "contentTooltip",
+              "url": null
+            },
+            "isSelected": false,
+            "number": null,
+            "numberAttributes": null,
+            "spacing": null
+          },
+          "type": "iconButton",
+          "log": null
+        },
+        "insets": null,
+        "backgroundColor": null
+      },
+      "type": "titleHeader",
+      "log": null
+    },
+    {
+      "titleHeader": {
+        "title": "비슷한 이미지",
+        "attributes": {
+          "color": "#2F3438",
+          "textStyle": "body16L20",
+          "weight": "semiBold",
+          "maxLines": null
+        },
+        "subtitle": null,
+        "badge": null,
+        "moreButton": null,
+        "iconButton": null,
+        "insets": {
+          "top": "16",
+          "left": "16",
+          "right": "16",
+          "bottom": "12"
+        },
+        "backgroundColor": null
+      },
+      "type": "titleHeader",
+      "log": null
+    }
+  ]
+}

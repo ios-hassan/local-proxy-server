@@ -1,0 +1,18 @@
+{
+  "type": "avatar",
+  "count": 1,
+  "items": [
+    {
+      "avatar": {
+        "size": 18,
+        "imageUrl": "https://image.ohousecdn.com/i/bucketplace-v2-development/uploads/users/profile_images/159755256437684966.jpeg",
+        "name": "소유하리",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/users/1387402"
+        }
+      },
+      "type": "avatar",
+      "log": null
+    }
+  ]
+}

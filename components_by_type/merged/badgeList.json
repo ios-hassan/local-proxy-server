@@ -1,0 +1,38 @@
+{
+  "type": "badgeList",
+  "count": 8,
+  "items": [
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    },
+    {
+      "type": "badgeList",
+      "topSpace": 4
+    }
+  ]
+}

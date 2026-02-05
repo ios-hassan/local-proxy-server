@@ -1,0 +1,99 @@
+{
+  "type": "linkButton",
+  "count": 2,
+  "items": [
+    {
+      "linkButton": {
+        "text": "전체보기",
+        "count": null,
+        "iconName": null,
+        "link": {
+          "landingUrl": "https://store.qa-web.dailyhou.se/exhibitions/13053"
+        },
+        "attributes": null,
+        "icon": null,
+        "layout": null
+      },
+      "type": "linkButton",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "단독상품스토어 전체보기",
+          "objectSectionId": "STORE_SRP_ONLY_PRODUCTION",
+          "objectSectionIdx": null,
+          "objectType": null,
+          "objectIdx": null,
+          "objectId": null,
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "linkButton": {
+        "text": "이미지가 포함된 집들이 보러가기",
+        "count": null,
+        "iconName": null,
+        "link": {
+          "landingUrl": "https://contents.qa-web.dailyhou.se/projects/36224"
+        },
+        "attributes": {
+          "color": "foreground",
+          "textStyle": "body14L18",
+          "weight": "semiBold"
+        },
+        "icon": {
+          "name": "chevronRight",
+          "size": 16,
+          "color": "foreground"
+        },
+        "layout": {
+          "alignment": "edgeAligned",
+          "border": {
+            "width": "1",
+            "color": "border",
+            "radius": null
+          },
+          "insets": {
+            "top": "0",
+            "left": "0",
+            "right": "0",
+            "bottom": "0"
+          },
+          "padding": {
+            "top": "10",
+            "bottom": "10",
+            "left": "16",
+            "right": "16"
+          }
+        }
+      },
+      "type": "linkButton",
+      "log": {
+        "object": {
+          "url": "https://contents.qa-web.dailyhou.se/card/detail/5058598?",
+          "pageId": "IMAGE_VIEWER",
+          "pageParams": "page_object_type=CARD&page_object_id=5058598",
+          "objectSection": null,
+          "objectSectionId": null,
+          "objectSectionIdx": null,
+          "objectType": "button",
+          "objectIdx": null,
+          "objectId": "콘텐츠 보러가기",
+          "objectUrl": null,
+          "data": "{\"source_object_type\":\"project\",\"source_object_id\":\"36224\"}"
+        },
+        "categories": [
+          "click"
+        ],
+        "userActions": null
+      }
+    }
+  ]
+}

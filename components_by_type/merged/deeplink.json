@@ -1,0 +1,11 @@
+{
+  "type": "deeplink",
+  "count": 1,
+  "items": [
+    {
+      "contentTooltip": null,
+      "type": "deeplink",
+      "url": "https://contents.qa-web.dailyhou.se/cards/5058598#comment"
+    }
+  ]
+}

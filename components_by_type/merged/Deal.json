@@ -1,0 +1,238 @@
+{
+  "type": "Deal",
+  "count": 4,
+  "items": [
+    {
+      "id": "447113",
+      "style": "grid_carousel",
+      "type": "Deal",
+      "name": "기본에 충실한 오피스/학생 컴퓨터 의자  12types",
+      "image": "https://image.ohousecdn.com/i/bucketplace-v2-development/uploads/deals/159781444591370199.jpg",
+      "isSoldOut": false,
+      "end": null,
+      "brand": {
+        "id": "1415",
+        "name": "다니카",
+        "reviewCount": null,
+        "reviewAverage": null,
+        "productionCount": null,
+        "iconName": null,
+        "link": null
+      },
+      "price": {
+        "originalPrice": "45900",
+        "sellingPrice": "35900",
+        "discountRate": "21",
+        "currency": null
+      },
+      "badgeProperties": {
+        "isFreeDelivery": false,
+        "isSpecialPrice": true,
+        "isDiscontinued": null,
+        "isSelling": true,
+        "isOverseasPurchase": false,
+        "isRetailDelivery": null,
+        "isThirdPartyLogistic": null,
+        "cardPromotion": null,
+        "thumbnailBadges": [],
+        "departureToday": null,
+        "deliveryServiceCode": null,
+        "couponBadge": null,
+        "isAssemblingFeeExcluded": false,
+        "deliveryBadgeType": "CHARGE",
+        "squareBadges": []
+      },
+      "reviewStatistic": {
+        "reviewCount": 405,
+        "reviewAverage": 4.400000095367432
+      },
+      "scrapInfo": {
+        "isScrap": false,
+        "scrapCount": 1684
+      },
+      "link": {
+        "landingUrl": "https://qa-web.dailyhou.se/productions/447113/selling"
+      },
+      "advertise": null,
+      "feedId": null,
+      "index": null,
+      "aiSummary": null,
+      "salesType": null,
+      "productNameBadges": []
+    },
+    {
+      "id": "447113",
+      "style": "2grid",
+      "type": "Deal",
+      "name": "기본에 충실한 오피스/학생 컴퓨터 의자  12types",
+      "image": "https://image.ohousecdn.com/i/bucketplace-v2-development/uploads/deals/159781444591370199.jpg",
+      "isSoldOut": false,
+      "end": null,
+      "brand": {
+        "id": "1415",
+        "name": "다니카",
+        "reviewCount": null,
+        "reviewAverage": null,
+        "productionCount": null,
+        "iconName": null,
+        "link": null
+      },
+      "price": {
+        "originalPrice": "45900",
+        "sellingPrice": "35900",
+        "discountRate": "21",
+        "currency": null
+      },
+      "badgeProperties": {
+        "isFreeDelivery": false,
+        "isSpecialPrice": true,
+        "isDiscontinued": null,
+        "isSelling": true,
+        "isOverseasPurchase": false,
+        "isRetailDelivery": null,
+        "isThirdPartyLogistic": null,
+        "cardPromotion": null,
+        "thumbnailBadges": [],
+        "departureToday": null,
+        "deliveryServiceCode": null,
+        "couponBadge": null,
+        "isAssemblingFeeExcluded": false,
+        "deliveryBadgeType": "CHARGE",
+        "squareBadges": []
+      },
+      "reviewStatistic": {
+        "reviewCount": 405,
+        "reviewAverage": 4.400000095367432
+      },
+      "scrapInfo": {
+        "isScrap": false,
+        "scrapCount": 1684
+      },
+      "link": {
+        "landingUrl": "https://qa-web.dailyhou.se/productions/447113/selling"
+      },
+      "advertise": null,
+      "feedId": null,
+      "index": 18,
+      "aiSummary": null,
+      "salesType": null,
+      "productNameBadges": []
+    },
+    {
+      "id": "322600",
+      "style": "2grid",
+      "type": "Deal",
+      "name": "고스트체어 2type 6colors",
+      "image": "https://image.ohousecdn.com/i/bucketplace-v2-development/uploads/deals/159005849454581067.jpg",
+      "isSoldOut": false,
+      "end": null,
+      "brand": {
+        "id": "3554",
+        "name": "영가구",
+        "reviewCount": null,
+        "reviewAverage": null,
+        "productionCount": null,
+        "iconName": null,
+        "link": null
+      },
+      "price": {
+        "originalPrice": "57000",
+        "sellingPrice": "25500",
+        "discountRate": "55",
+        "currency": null
+      },
+      "badgeProperties": {
+        "isFreeDelivery": false,
+        "isSpecialPrice": true,
+        "isDiscontinued": null,
+        "isSelling": true,
+        "isOverseasPurchase": false,
+        "isRetailDelivery": null,
+        "isThirdPartyLogistic": null,
+        "cardPromotion": null,
+        "thumbnailBadges": [],
+        "departureToday": null,
+        "deliveryServiceCode": null,
+        "couponBadge": null,
+        "isAssemblingFeeExcluded": false,
+        "deliveryBadgeType": "CHARGE",
+        "squareBadges": []
+      },
+      "reviewStatistic": {
+        "reviewCount": 542,
+        "reviewAverage": 4.5
+      },
+      "scrapInfo": {
+        "isScrap": false,
+        "scrapCount": 0
+      },
+      "link": {
+        "landingUrl": "https://qa-web.dailyhou.se/productions/322600/selling"
+      },
+      "advertise": null,
+      "feedId": null,
+      "index": 103,
+      "aiSummary": null,
+      "salesType": null,
+      "productNameBadges": []
+    },
+    {
+      "id": "441967",
+      "style": "2grid",
+      "type": "Deal",
+      "name": "아토 창의력 쑥쑥 초등학생의자 책상의자",
+      "image": "https://image.ohousecdn.com/i/bucketplace-v2-development/uploads/deals/159676720115847131.jpg",
+      "isSoldOut": false,
+      "end": null,
+      "brand": {
+        "id": "20775",
+        "name": "체어스코",
+        "reviewCount": null,
+        "reviewAverage": null,
+        "productionCount": null,
+        "iconName": null,
+        "link": null
+      },
+      "price": {
+        "originalPrice": "110000",
+        "sellingPrice": "53900",
+        "discountRate": "51",
+        "currency": null
+      },
+      "badgeProperties": {
+        "isFreeDelivery": false,
+        "isSpecialPrice": true,
+        "isDiscontinued": null,
+        "isSelling": true,
+        "isOverseasPurchase": false,
+        "isRetailDelivery": null,
+        "isThirdPartyLogistic": null,
+        "cardPromotion": null,
+        "thumbnailBadges": [],
+        "departureToday": null,
+        "deliveryServiceCode": null,
+        "couponBadge": null,
+        "isAssemblingFeeExcluded": false,
+        "deliveryBadgeType": "CHARGE",
+        "squareBadges": []
+      },
+      "reviewStatistic": {
+        "reviewCount": 243,
+        "reviewAverage": 4.400000095367432
+      },
+      "scrapInfo": {
+        "isScrap": false,
+        "scrapCount": 576
+      },
+      "link": {
+        "landingUrl": "https://qa-web.dailyhou.se/productions/441967/selling"
+      },
+      "advertise": null,
+      "feedId": null,
+      "index": 111,
+      "aiSummary": null,
+      "salesType": null,
+      "productNameBadges": []
+    }
+  ]
+}

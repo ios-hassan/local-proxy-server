@@ -1,0 +1,441 @@
+{
+  "type": "relatedKeyword",
+  "count": 15,
+  "items": [
+    {
+      "relatedKeyword": {
+        "text": "식탁 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%8B%9D%ED%83%81%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "0",
+          "objectId": "식탁 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "책상 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%B1%85%EC%83%81%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "1",
+          "objectId": "책상 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "컴퓨터 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%BB%B4%ED%93%A8%ED%84%B0%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "2",
+          "objectId": "컴퓨터 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "화장대 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%ED%99%94%EC%9E%A5%EB%8C%80%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "3",
+          "objectId": "화장대 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "접이식 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%A0%91%EC%9D%B4%EC%8B%9D%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "4",
+          "objectId": "접이식 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "스툴",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%8A%A4%ED%88%B4&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "5",
+          "objectId": "스툴",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "책상",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%B1%85%EC%83%81&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "6",
+          "objectId": "책상",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "원목 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9B%90%EB%AA%A9%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "7",
+          "objectId": "원목 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "1인 소파",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=1%EC%9D%B8%20%EC%86%8C%ED%8C%8C&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "8",
+          "objectId": "1인 소파",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "러그",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EB%9F%AC%EA%B7%B8&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "9",
+          "objectId": "러그",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "식탁",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%8B%9D%ED%83%81&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "10",
+          "objectId": "식탁",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "인테리어 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "11",
+          "objectId": "인테리어 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "화장대",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%ED%99%94%EC%9E%A5%EB%8C%80&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "12",
+          "objectId": "화장대",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "게이밍 의자",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%EA%B2%8C%EC%9D%B4%EB%B0%8D%20%EC%9D%98%EC%9E%90&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "13",
+          "objectId": "게이밍 의자",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    },
+    {
+      "relatedKeyword": {
+        "text": "테이블",
+        "link": {
+          "landingUrl": "https://qa-web.dailyhou.se/productions/feed?query=%ED%85%8C%EC%9D%B4%EB%B8%94&search_affect_type=Related"
+        }
+      },
+      "type": "relatedKeyword",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "상단 연관검색어",
+          "objectSectionId": "TOP_RELATED_KEYWORDS",
+          "objectSectionIdx": null,
+          "objectType": "KEYWORD",
+          "objectIdx": "14",
+          "objectId": "테이블",
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "impression",
+          "click"
+        ],
+        "userActions": null
+      }
+    }
+  ]
+}

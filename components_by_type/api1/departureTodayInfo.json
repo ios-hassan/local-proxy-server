@@ -1,0 +1,34 @@
+{
+  "type": "departureTodayInfo",
+  "count": 7,
+  "items": [
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    },
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    },
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    },
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    },
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    },
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    },
+    {
+      "type": "departureTodayInfo",
+      "topSpace": 4
+    }
+  ]
+}

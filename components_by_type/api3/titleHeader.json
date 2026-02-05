@@ -1,0 +1,30 @@
+{
+  "type": "titleHeader",
+  "count": 1,
+  "items": [
+    {
+      "titleHeader": {
+        "title": "비슷한 이미지",
+        "attributes": {
+          "color": "#2F3438",
+          "textStyle": "body16L20",
+          "weight": "semiBold",
+          "maxLines": null
+        },
+        "subtitle": null,
+        "badge": null,
+        "moreButton": null,
+        "iconButton": null,
+        "insets": {
+          "top": "16",
+          "left": "16",
+          "right": "16",
+          "bottom": "12"
+        },
+        "backgroundColor": null
+      },
+      "type": "titleHeader",
+      "log": null
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "type": "brand",
+  "count": 8,
+  "items": [
+    {
+      "type": "brand",
+      "topSpace": 4
+    },
+    {
+      "type": "brand",
+      "topSpace": 10
+    },
+    {
+      "type": "brand",
+      "topSpace": 10
+    },
+    {
+      "type": "brand",
+      "topSpace": 4
+    },
+    {
+      "type": "brand",
+      "topSpace": 4
+    },
+    {
+      "type": "brand",
+      "topSpace": 10
+    },
+    {
+      "type": "brand",
+      "topSpace": 4
+    },
+    {
+      "type": "brand",
+      "topSpace": 4
+    }
+  ]
+}

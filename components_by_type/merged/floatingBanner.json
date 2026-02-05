@@ -1,0 +1,34 @@
+{
+  "type": "floatingBanner",
+  "count": 1,
+  "items": [
+    {
+      "floatingBanner": {
+        "displayName": "미식100선",
+        "value": "prop[600]=600001",
+        "isOn": false,
+        "imageUrl": "https://prs.ohouse.com/apne2/commerce/commerce/promotion/v1-460969673449472.png"
+      },
+      "type": "floatingBanner",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "플로팅필터",
+          "objectSectionId": null,
+          "objectSectionIdx": null,
+          "objectType": null,
+          "objectIdx": null,
+          "objectId": "선택",
+          "objectUrl": null,
+          "data": "{\"id\":\"prop[600]\\u003d600001\",\"display_name\":\"미식100선\"}"
+        },
+        "categories": [
+          "click"
+        ],
+        "userActions": null
+      }
+    }
+  ]
+}

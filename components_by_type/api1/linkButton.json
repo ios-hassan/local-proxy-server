@@ -1,0 +1,39 @@
+{
+  "type": "linkButton",
+  "count": 1,
+  "items": [
+    {
+      "linkButton": {
+        "text": "전체보기",
+        "count": null,
+        "iconName": null,
+        "link": {
+          "landingUrl": "https://store.qa-web.dailyhou.se/exhibitions/13053"
+        },
+        "attributes": null,
+        "icon": null,
+        "layout": null
+      },
+      "type": "linkButton",
+      "log": {
+        "object": {
+          "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "pageId": "SRP_STORE",
+          "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+          "objectSection": "단독상품스토어 전체보기",
+          "objectSectionId": "STORE_SRP_ONLY_PRODUCTION",
+          "objectSectionIdx": null,
+          "objectType": null,
+          "objectIdx": null,
+          "objectId": null,
+          "objectUrl": null,
+          "data": null
+        },
+        "categories": [
+          "click"
+        ],
+        "userActions": null
+      }
+    }
+  ]
+}

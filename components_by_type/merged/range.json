@@ -1,0 +1,11 @@
+{
+  "type": "range",
+  "count": 1,
+  "items": [
+    {
+      "min": 0,
+      "max": 1234999936,
+      "type": "range"
+    }
+  ]
+}

@@ -1,0 +1,2229 @@
+{
+  "type": "commerceFilterSideSheetContainer",
+  "count": 1,
+  "items": [
+    {
+      "commerceFilterSideSheetContainer": {
+        "filterHeader": {
+          "commerceFilterHeaderContainer": {
+            "totalCount": 17944,
+            "resetBoxButton": null
+          },
+          "type": "commerceFilterHeaderContainer"
+        },
+        "orderContainer": {
+          "commerceFilterOrderContainer": {
+            "displayName": "정렬",
+            "orders": [
+              {
+                "commerceFilterOrder": {
+                  "displayName": "판매순",
+                  "value": "order=WEEKLY_SALES",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dWEEKLY_SALES\",\"property_display_name\":\"판매순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "정확도순",
+                  "value": "order=ACCURACY",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dACCURACY\",\"property_display_name\":\"정확도순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "추천순",
+                  "value": "order=POPULAR",
+                  "toolTip": "추천순은 오늘의집이 고객 여러분에게 제안 드리는 상품 순서입니다.\n온라인 최저가로 확인된 상품과 오늘의집에서만 만나볼 수 있는 상품 등이 우선적으로 고려됩니다.",
+                  "isSelected": true
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dPOPULAR\",\"property_display_name\":\"추천순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "낮은가격순",
+                  "value": "order=PRICE_ASC",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dPRICE_ASC\",\"property_display_name\":\"낮은가격순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "높은가격순",
+                  "value": "order=PRICE_DESC",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dPRICE_DESC\",\"property_display_name\":\"높은가격순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "리뷰많은순",
+                  "value": "order=REVIEW_DESC",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dREVIEW_DESC\",\"property_display_name\":\"리뷰많은순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "유저사진 많은순",
+                  "value": "order=CARD_DESC",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dCARD_DESC\",\"property_display_name\":\"유저사진 많은순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceFilterOrder": {
+                  "displayName": "최신순",
+                  "value": "order=RECENT",
+                  "toolTip": null,
+                  "isSelected": false
+                },
+                "type": "commerceFilterOrder",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"order\\u003dRECENT\",\"property_display_name\":\"최신순\",\"property_type_id\":\"order\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              }
+            ]
+          },
+          "type": "commerceFilterOrderContainer"
+        },
+        "filterGroups": [
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "상품 유형",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[102]",
+                    "displayName": "렌탈",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "렌탈상품 보기",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "102001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 1
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"102001\",\"property_display_name\":\"렌탈상품 보기\",\"property_type_id\":\"102\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "렌탈상품 제외",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "102002",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 17943
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"102002\",\"property_display_name\":\"렌탈상품 제외\",\"property_type_id\":\"102\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                },
+                {
+                  "commerceFilter": {
+                    "id": "prop[101]",
+                    "displayName": "해외직구 여부",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "해외직구 보기",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "101001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 114
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"101001\",\"property_display_name\":\"해외직구 보기\",\"property_type_id\":\"101\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "해외직구 제외",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "101002",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 17830
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"101002\",\"property_display_name\":\"해외직구 제외\",\"property_type_id\":\"101\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 0
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "패키지 할인",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[800]",
+                    "displayName": "패키지 할인",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "패키지 할인",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "800001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 16763
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"800001\",\"property_display_name\":\"패키지 할인\",\"property_type_id\":\"800\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 1
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "브랜드",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[400]",
+                    "displayName": "",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "티모브랜드",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "33791",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"33791\",\"property_display_name\":\"티모브랜드\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "일룸",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "326",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"326\",\"property_display_name\":\"일룸\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "코튼리빙",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "11339",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"11339\",\"property_display_name\":\"코튼리빙\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "젠티스",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "6509",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"6509\",\"property_display_name\":\"젠티스\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "3D조명",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "4713",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"4713\",\"property_display_name\":\"3D조명\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "소희 브랜드",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "33888",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"33888\",\"property_display_name\":\"소희 브랜드\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "티모",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "33854",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"33854\",\"property_display_name\":\"티모\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "삼성전자",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "868",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"868\",\"property_display_name\":\"삼성전자\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "TG",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "21775",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"21775\",\"property_display_name\":\"TG\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "마틸라",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "2442",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"2442\",\"property_display_name\":\"마틸라\",\"property_type_id\":\"400\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": null,
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 2
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "특가",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[103]",
+                    "displayName": "",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "특가상품 보기",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "103001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 858
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"103001\",\"property_display_name\":\"특가상품 보기\",\"property_type_id\":\"103\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 3
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "바이너리샵",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[700]",
+                    "displayName": "바이너리샵",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "바이너리샵",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "700001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 876
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"700001\",\"property_display_name\":\"바이너리샵\",\"property_type_id\":\"700\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 4
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "미식100선",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[600]",
+                    "displayName": "",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "미식100선",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "600001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 2
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"600001\",\"property_display_name\":\"미식100선\",\"property_type_id\":\"600\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 5
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "가격",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[100]",
+                    "displayName": "",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "전체",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": null,
+                          "isDisabled": false,
+                          "isSelected": true,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_display_name\":\"전체\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "50,000원 이하",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "~50000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"~50000\",\"property_display_name\":\"50,000원 이하\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "50,000원 ~ 100,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "50000~100000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"50000~100000\",\"property_display_name\":\"50,000원 ~ 100,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "100,000원 ~ 200,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "100000~200000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"100000~200000\",\"property_display_name\":\"100,000원 ~ 200,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "200,000원 ~ 300,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "200000~300000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"200000~300000\",\"property_display_name\":\"200,000원 ~ 300,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "300,000원 ~ 400,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "300000~400000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"300000~400000\",\"property_display_name\":\"300,000원 ~ 400,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "400,000원 ~ 500,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "400000~500000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"400000~500000\",\"property_display_name\":\"400,000원 ~ 500,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "500,000원 ~ 600,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "500000~600000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"500000~600000\",\"property_display_name\":\"500,000원 ~ 600,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "600,000원 ~ 700,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "600000~700000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"600000~700000\",\"property_display_name\":\"600,000원 ~ 700,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "700,000원 ~ 800,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "700000~800000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"700000~800000\",\"property_display_name\":\"700,000원 ~ 800,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "800,000원 ~ 900,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "800000~900000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"800000~900000\",\"property_display_name\":\"800,000원 ~ 900,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "900,000원 ~ 1,000,000원",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "900000~1000000",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"900000~1000000\",\"property_display_name\":\"900,000원 ~ 1,000,000원\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "1,000,000원 이상",
+                          "adminName": null,
+                          "imageUrl": null,
+                          "value": "1000000~",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": null
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"1000000~\",\"property_display_name\":\"1,000,000원 이상\",\"property_type_id\":\"100\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 4,
+                    "style": 0,
+                    "unit": "원",
+                    "range": {
+                      "min": 0,
+                      "max": 1234999936,
+                      "type": "range"
+                    }
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 6
+            },
+            "type": "commerceFilterGroupContainer"
+          },
+          {
+            "commerceFilterGroupContainer": {
+              "displayName": "배송",
+              "filters": [
+                {
+                  "commerceFilter": {
+                    "id": "prop[201]",
+                    "displayName": "",
+                    "filterValues": [
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "무료 배송",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "201001",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 6629
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"201001\",\"property_display_name\":\"무료 배송\",\"property_type_id\":\"201\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "오늘출발",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "201008",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 38
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"201008\",\"property_display_name\":\"오늘출발\",\"property_type_id\":\"201\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "희망일배송",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "201002",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 99
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"201002\",\"property_display_name\":\"희망일배송\",\"property_type_id\":\"201\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "업체직접배송",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "201003",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 6532
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"201003\",\"property_display_name\":\"업체직접배송\",\"property_type_id\":\"201\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "원하는날도착",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "201004",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 11
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"201004\",\"property_display_name\":\"원하는날도착\",\"property_type_id\":\"201\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      },
+                      {
+                        "commerceFilterValue": {
+                          "displayName": "제주도 배송 가능",
+                          "adminName": "",
+                          "imageUrl": "",
+                          "value": "201005",
+                          "isDisabled": false,
+                          "isSelected": false,
+                          "count": 8628
+                        },
+                        "type": "commerceFilterValue",
+                        "log": {
+                          "object": {
+                            "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "pageId": "SRP_STORE",
+                            "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                            "objectSection": "필터 모달",
+                            "objectSectionId": "filter_modal",
+                            "objectSectionIdx": null,
+                            "objectType": "button",
+                            "objectIdx": null,
+                            "objectId": "selection",
+                            "objectUrl": null,
+                            "data": "{\"property_id\":\"201005\",\"property_display_name\":\"제주도 배송 가능\",\"property_type_id\":\"201\"}"
+                          },
+                          "categories": [
+                            "click"
+                          ],
+                          "userActions": null
+                        }
+                      }
+                    ],
+                    "selectType": 0,
+                    "style": 0,
+                    "unit": "",
+                    "range": null
+                  },
+                  "type": "commerceFilter"
+                }
+              ],
+              "groupIndex": 7
+            },
+            "type": "commerceFilterGroupContainer"
+          }
+        ],
+        "categories": {
+          "commerceCategoryFilterContainer": {
+            "displayName": "카테고리",
+            "children": [
+              {
+                "commerceCategoryFilter": {
+                  "id": 27000000,
+                  "displayName": "테마관",
+                  "fullDisplayName": "테마관",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/167814978191109337.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"27000000\",\"property_display_name\":\"테마관\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 10000000,
+                  "displayName": "가구",
+                  "fullDisplayName": "가구",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/0.png",
+                  "hasBulletPoint": true,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"10000000\",\"property_display_name\":\"가구\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 18000000,
+                  "displayName": "패브릭",
+                  "fullDisplayName": "패브릭",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/1.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"18000000\",\"property_display_name\":\"패브릭\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 24000000,
+                  "displayName": "조명",
+                  "fullDisplayName": "조명",
+                  "imageUrl": "",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"24000000\",\"property_display_name\":\"조명\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 14000000,
+                  "displayName": "가전",
+                  "fullDisplayName": "가전",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/161216978172575103.jpg",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"14000000\",\"property_display_name\":\"가전\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 16000000,
+                  "displayName": "주방용품",
+                  "fullDisplayName": "주방용품",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/5.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"16000000\",\"property_display_name\":\"주방용품\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 11000000,
+                  "displayName": "장식/소품",
+                  "fullDisplayName": "장식/소품",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/2.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"11000000\",\"property_display_name\":\"장식/소품\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 13000000,
+                  "displayName": "수납/정리",
+                  "fullDisplayName": "수납/정리",
+                  "imageUrl": "",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"13000000\",\"property_display_name\":\"수납/정리\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 12000000,
+                  "displayName": "생활용품",
+                  "fullDisplayName": "생활용품",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/4_0.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"12000000\",\"property_display_name\":\"생활용품\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 25000000,
+                  "displayName": "생필품",
+                  "fullDisplayName": "생필품",
+                  "imageUrl": "",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"25000000\",\"property_display_name\":\"생필품\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 19000000,
+                  "displayName": "공구/DIY",
+                  "fullDisplayName": "공구/DIY",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/6.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"19000000\",\"property_display_name\":\"공구/DIY\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 17000000,
+                  "displayName": "리모델링·홈케어",
+                  "fullDisplayName": "리모델링·홈케어",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/159739017943157538.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"17000000\",\"property_display_name\":\"리모델링·홈케어\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 15000000,
+                  "displayName": "반려동물",
+                  "fullDisplayName": "반려동물",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/8.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"15000000\",\"property_display_name\":\"반려동물\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 22000000,
+                  "displayName": "실내운동",
+                  "fullDisplayName": "실내운동",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/161041700965677556.png",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"22000000\",\"property_display_name\":\"실내운동\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 26000000,
+                  "displayName": "유아/아동",
+                  "fullDisplayName": "유아/아동",
+                  "imageUrl": "",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"26000000\",\"property_display_name\":\"유아/아동\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 35000000,
+                  "displayName": "테스트용",
+                  "fullDisplayName": "테스트용",
+                  "imageUrl": "https://bucketplace-v2-development.s3.amazonaws.com/uploads/product_category/168049186256464411.jpg",
+                  "hasBulletPoint": false,
+                  "isLeaf": true,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"35000000\",\"property_display_name\":\"테스트용\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 36000000,
+                  "displayName": "test hm.",
+                  "fullDisplayName": "test hm.",
+                  "imageUrl": "",
+                  "hasBulletPoint": false,
+                  "isLeaf": true,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"36000000\",\"property_display_name\":\"test hm.\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 39000000,
+                  "displayName": "커머스플랫폼_쿠폰 발행 검증용",
+                  "fullDisplayName": "커머스플랫폼_쿠폰 발행 검증용",
+                  "imageUrl": "",
+                  "hasBulletPoint": false,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"39000000\",\"property_display_name\":\"커머스플랫폼_쿠폰 발행 검증용\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              },
+              {
+                "commerceCategoryFilter": {
+                  "id": 42000000,
+                  "displayName": "패키지 할인",
+                  "fullDisplayName": "패키지 할인",
+                  "imageUrl": "",
+                  "hasBulletPoint": true,
+                  "isLeaf": false,
+                  "isDisabled": false,
+                  "isSelected": false,
+                  "count": null
+                },
+                "type": "commerceCategoryFilter",
+                "log": {
+                  "object": {
+                    "url": "https://qa-web.dailyhou.se/productions/feed?query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "pageId": "SRP_STORE",
+                    "pageParams": "query=%EC%9D%98%EC%9E%90&search_affect_type=Typing&order=popular",
+                    "objectSection": "필터 모달",
+                    "objectSectionId": "filter_modal",
+                    "objectSectionIdx": null,
+                    "objectType": "button",
+                    "objectIdx": null,
+                    "objectId": "selection",
+                    "objectUrl": null,
+                    "data": "{\"property_id\":\"42000000\",\"property_display_name\":\"패키지 할인\",\"property_type_id\":\"category_id\"}"
+                  },
+                  "categories": [
+                    "click"
+                  ],
+                  "userActions": null
+                }
+              }
+            ],
+            "path": [],
+            "siblings": []
+          },
+          "type": "commerceCategoryFilterContainer"
+        }
+      },
+      "type": "commerceFilterSideSheetContainer"
+    }
+  ]
+}
