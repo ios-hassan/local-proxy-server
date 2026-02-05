@@ -13,6 +13,14 @@ interface PresetTypeData {
   items: unknown[];
 }
 
+interface SelectedItem {
+  id: string;
+  type: string;
+  itemIndex: number;
+  data: unknown;
+  preview: string;
+}
+
 export default function MobilePresetPage() {
   const [summary, setSummary] = useState<PresetSummary | null>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -23,6 +31,9 @@ export default function MobilePresetPage() {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
+  const [showGenerateModal, setShowGenerateModal] = useState(false);
+  const [generatedCopied, setGeneratedCopied] = useState(false);
 
   useEffect(() => {
     fetchSummary();
@@ -79,10 +90,62 @@ export default function MobilePresetPage() {
     }
   };
 
+  const handleAddToList = () => {
+    if (!typeData || selectedItemIndex === null || !selectedType) return;
+
+    const item = typeData.items[selectedItemIndex];
+    const id = `${selectedType}-${selectedItemIndex}-${Date.now()}`;
+
+    // 중복 체크 (같은 타입, 같은 인덱스)
+    const isDuplicate = selectedItems.some(
+      (si) => si.type === selectedType && si.itemIndex === selectedItemIndex
+    );
+
+    if (isDuplicate) {
+      alert("이미 추가된 아이템입니다.");
+      return;
+    }
+
+    const newSelectedItem: SelectedItem = {
+      id,
+      type: selectedType,
+      itemIndex: selectedItemIndex,
+      data: item,
+      preview: getItemPreview(item),
+    };
+
+    setSelectedItems((prev) => [...prev, newSelectedItem]);
+  };
+
+  const handleRemoveFromList = (id: string) => {
+    setSelectedItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleGenerate = () => {
+    if (selectedItems.length === 0) {
+      alert("추가된 아이템이 없습니다.");
+      return;
+    }
+    setShowGenerateModal(true);
+  };
+
+  const getGeneratedJson = () => {
+    return selectedItems.map((item) => item.data);
+  };
+
+  const handleCopyGenerated = async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(getGeneratedJson(), null, 2));
+      setGeneratedCopied(true);
+      setTimeout(() => setGeneratedCopied(false), 2000);
+    } catch (err) {
+      console.error("복사 실패:", err);
+    }
+  };
+
   const getItemPreview = (item: unknown): string => {
     if (typeof item === "object" && item !== null) {
       const obj = item as Record<string, unknown>;
-      // id, name, type 등 주요 필드 찾기
       const id = obj.id || obj.Id || obj.ID;
       const name = obj.name || obj.Name || obj.title || obj.Title;
       const type = obj.type || obj.Type;
@@ -128,6 +191,57 @@ export default function MobilePresetPage() {
         <span className="text-sm text-gray-500">
           총 {summary?.total_types || 0}개 타입
         </span>
+      </div>
+
+      {/* 상단: 가로형 리스트뷰 + 추가하기 버튼 */}
+      <div className="flex items-center gap-3 mb-4 p-3 bg-gray-100 rounded-lg border border-gray-200">
+        <div className="flex-1 flex items-center gap-2 overflow-x-auto min-h-[40px]">
+          {selectedItems.length === 0 ? (
+            <span className="text-gray-400 text-sm">선택된 아이템이 없습니다</span>
+          ) : (
+            selectedItems.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-300 rounded-lg flex-shrink-0"
+              >
+                <div className="flex flex-col">
+                  <span className="text-xs text-blue-600 font-medium">{item.type}</span>
+                  <span className="text-xs text-gray-600 truncate max-w-[150px]">
+                    #{item.itemIndex + 1} {item.preview}
+                  </span>
+                </div>
+                <button
+                  onClick={() => handleRemoveFromList(item.id)}
+                  className="text-gray-400 hover:text-red-500 cursor-pointer ml-1"
+                >
+                  ✕
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+        <button
+          onClick={handleAddToList}
+          disabled={selectedItemIndex === null || !typeData}
+          className={`px-4 py-2 rounded-lg font-medium flex-shrink-0 cursor-pointer transition-colors ${
+            selectedItemIndex !== null && typeData
+              ? "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+        >
+          추가하기
+        </button>
+        <button
+          onClick={handleGenerate}
+          disabled={selectedItems.length === 0}
+          className={`px-4 py-2 rounded-lg font-medium flex-shrink-0 cursor-pointer transition-colors ${
+            selectedItems.length > 0
+              ? "bg-green-600 text-white hover:bg-green-700"
+              : "bg-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+        >
+          생성하기
+        </button>
       </div>
 
       {/* 3단 분할 레이아웃 */}
@@ -254,6 +368,76 @@ export default function MobilePresetPage() {
           </div>
         </div>
       </div>
+
+      {/* 생성하기 모달 */}
+      {showGenerateModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl w-[80vw] h-[80vh] flex flex-col">
+            {/* 모달 헤더 */}
+            <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+              <div>
+                <h2 className="text-xl font-bold text-black">생성된 JSON</h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  {selectedItems.length}개의 아이템이 합쳐졌습니다
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleCopyGenerated}
+                  className={`px-4 py-2 rounded-lg font-medium cursor-pointer transition-colors ${
+                    generatedCopied
+                      ? "bg-green-500 text-white"
+                      : "bg-gray-200 hover:bg-gray-300 text-black"
+                  }`}
+                >
+                  {generatedCopied ? "복사됨!" : "JSON 복사"}
+                </button>
+                <button
+                  onClick={() => setShowGenerateModal(false)}
+                  className="px-4 py-2 rounded-lg font-medium bg-gray-200 hover:bg-gray-300 text-black cursor-pointer"
+                >
+                  닫기
+                </button>
+              </div>
+            </div>
+
+            {/* 모달 바디 */}
+            <div className="flex-1 flex min-h-0">
+              {/* 왼쪽: 아이템 순서 목록 */}
+              <div className="w-64 border-r border-gray-200 flex flex-col">
+                <div className="p-3 bg-gray-50 border-b border-gray-200 font-medium text-black text-sm">
+                  아이템 순서
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  {selectedItems.map((item, index) => (
+                    <div
+                      key={item.id}
+                      className="px-4 py-3 border-b border-gray-100"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-medium">
+                          {index + 1}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-black truncate">{item.type}</div>
+                          <div className="text-xs text-gray-500 truncate">#{item.itemIndex + 1}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* 오른쪽: JSON 뷰어 */}
+              <div className="flex-1 overflow-auto p-4 bg-gray-900">
+                <pre className="text-sm text-green-400 font-mono whitespace-pre-wrap">
+                  {JSON.stringify(getGeneratedJson(), null, 2)}
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
