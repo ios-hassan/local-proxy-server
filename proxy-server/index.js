@@ -63,9 +63,9 @@ function broadcastLog(log) {
 app.use(cors());
 
 // Raw body 파싱을 위한 미들웨어
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.raw({ type: '*/*', limit: '10mb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.raw({ type: '*/*', limit: '50mb' }));
 
 // 파일에서 API 목록 로드
 function loadApiList() {
