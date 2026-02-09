@@ -67,12 +67,29 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.raw({ type: '*/*', limit: '50mb' }));
 
-// 파일에서 API 목록 로드
+// 파일에서 API 목록 로드 (기존 fakeResponse → fakeResponses 마이그레이션 포함)
 function loadApiList() {
   try {
     if (fs.existsSync(API_LIST_FILE)) {
       const data = fs.readFileSync(API_LIST_FILE, 'utf-8');
-      return JSON.parse(data);
+      const list = JSON.parse(data);
+      let migrated = false;
+      const result = list.map(api => {
+        if (api.fakeResponse !== undefined && !api.fakeResponses) {
+          migrated = true;
+          const { fakeResponse, ...rest } = api;
+          return {
+            ...rest,
+            fakeResponses: [{ name: 'Default', body: fakeResponse, isActive: true }],
+          };
+        }
+        return api;
+      });
+      if (migrated) {
+        fs.writeFileSync(API_LIST_FILE, JSON.stringify(result, null, 2), 'utf-8');
+        console.log('[Migration] fakeResponse → fakeResponses 마이그레이션 완료');
+      }
+      return result;
     }
   } catch (error) {
     console.error('[Load Error] API 목록 로드 실패:', error.message);
@@ -116,15 +133,21 @@ function isDuplicateApi(baseUrl, apiPath, query, body, excludeId = null) {
 
 // API 저장 엔드포인트
 app.post('/api/add-proxy-api', (req, res) => {
-  const { baseUrl, path, query, body, fakeResponse } = req.body;
+  const { baseUrl, path, query, body, fakeResponses } = req.body;
 
-  if (!baseUrl || !path || !fakeResponse) {
-    return res.status(400).json({ error: 'baseUrl, path, fakeResponse는 필수입니다.' });
+  if (!baseUrl || !path || !fakeResponses || fakeResponses.length === 0) {
+    return res.status(400).json({ error: 'baseUrl, path, fakeResponses는 필수입니다.' });
   }
 
   // 중복 체크
   if (isDuplicateApi(baseUrl, path, query, body)) {
     return res.status(409).json({ error: '동일한 baseUrl, path, query 또는 body를 가진 API가 이미 존재합니다.' });
+  }
+
+  // 활성 응답이 없으면 첫 번째를 활성화
+  const hasActive = fakeResponses.some(r => r.isActive);
+  if (!hasActive) {
+    fakeResponses[0].isActive = true;
   }
 
   const newApi = {
@@ -133,7 +156,7 @@ app.post('/api/add-proxy-api', (req, res) => {
     path,
     query: query || '',
     body: body || '',
-    fakeResponse,
+    fakeResponses,
     createdAt: new Date().toISOString(),
   };
 
@@ -164,10 +187,10 @@ app.get('/api/get-proxy-api/:id', (req, res) => {
 // API 수정 엔드포인트
 app.put('/api/update-proxy-api/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const { baseUrl, path, query, body, fakeResponse } = req.body;
+  const { baseUrl, path, query, body, fakeResponses } = req.body;
 
-  if (!baseUrl || !path || !fakeResponse) {
-    return res.status(400).json({ error: 'baseUrl, path, fakeResponse는 필수입니다.' });
+  if (!baseUrl || !path || !fakeResponses || fakeResponses.length === 0) {
+    return res.status(400).json({ error: 'baseUrl, path, fakeResponses는 필수입니다.' });
   }
 
   const index = apiList.findIndex((item) => item.id === id);
@@ -176,13 +199,19 @@ app.put('/api/update-proxy-api/:id', (req, res) => {
     return res.status(404).json({ error: 'API를 찾을 수 없습니다.' });
   }
 
+  // 활성 응답이 없으면 첫 번째를 활성화
+  const hasActive = fakeResponses.some(r => r.isActive);
+  if (!hasActive) {
+    fakeResponses[0].isActive = true;
+  }
+
   apiList[index] = {
     ...apiList[index],
     baseUrl,
     path,
     query: query || '',
     body: body || '',
-    fakeResponse,
+    fakeResponses,
     updatedAt: new Date().toISOString(),
   };
 
@@ -190,6 +219,30 @@ app.put('/api/update-proxy-api/:id', (req, res) => {
   console.log(`[API Updated] ${baseUrl}${path}`);
 
   res.json({ message: 'API가 수정되었습니다.', data: apiList[index] });
+});
+
+// Active Response 전환 엔드포인트
+app.patch('/api/switch-response/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const { responseIndex } = req.body;
+
+  const api = apiList.find((item) => item.id === id);
+  if (!api) {
+    return res.status(404).json({ error: 'API를 찾을 수 없습니다.' });
+  }
+
+  if (responseIndex < 0 || responseIndex >= api.fakeResponses.length) {
+    return res.status(400).json({ error: '유효하지 않은 응답 인덱스입니다.' });
+  }
+
+  api.fakeResponses.forEach((r, i) => {
+    r.isActive = i === responseIndex;
+  });
+
+  saveApiList();
+  console.log(`[Response Switched] ${api.baseUrl}${api.path} → ${api.fakeResponses[responseIndex].name}`);
+
+  res.json({ message: 'Active response가 변경되었습니다.', data: api });
 });
 
 // API 삭제 엔드포인트
@@ -536,10 +589,15 @@ app.all('/', async (req, res) => {
   const matchedApi = findMatchingApi(targetUrl, requestBody);
 
   if (matchedApi) {
+    const activeResponse = matchedApi.fakeResponses.find(r => r.isActive);
+    const fakeBody = activeResponse ? activeResponse.body : matchedApi.fakeResponses[0].body;
+    const responseName = activeResponse ? activeResponse.name : matchedApi.fakeResponses[0].name;
+
     console.log(`\n>>> [FAKE RESPONSE MATCHED] <<<`);
     console.log(`Matched API ID: ${matchedApi.id}`);
+    console.log(`Active Response: "${responseName}"`);
     console.log(`Returning fake response for: ${matchedApi.baseUrl}${matchedApi.path}`);
-    console.log(`Fake Response: ${matchedApi.fakeResponse}\n`);
+    console.log(`Fake Response: ${fakeBody}\n`);
 
     // 통합 로그 저장 (Fake Response)
     addLog({
@@ -557,13 +615,14 @@ app.all('/', async (req, res) => {
         status: 200,
         isFake: true,
         matchedApiId: matchedApi.id,
+        responseName: responseName,
         headers: { 'content-type': 'application/json' },
-        body: matchedApi.fakeResponse,
+        body: fakeBody,
       },
     });
 
     res.setHeader('Content-Type', 'application/json');
-    return res.send(matchedApi.fakeResponse);
+    return res.send(fakeBody);
   }
 
   try {
