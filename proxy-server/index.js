@@ -8,6 +8,9 @@ const PORT = 3000;
 // API 목록 저장 파일 경로
 const API_LIST_FILE = path.join(__dirname, 'api-list.json');
 
+// 설정 파일 경로
+const SETTINGS_FILE = path.join(__dirname, 'settings.json');
+
 // MobileAPI Preset 디렉토리 경로
 const MOBILE_PRESET_DIR = path.join(__dirname, '..', 'preset_list');
 
@@ -16,22 +19,34 @@ const MAX_LOGS = 1000;
 const logs = [];
 const sseClients = new Set();
 
+// Ads 로그 저장소 (메모리)
+const adsLogs = [];
+const adsSseClients = new Set();
+
 // 로그 제외 패턴
 const LOG_EXCLUDE_PATTERNS = ['/ads/tracker'];
 
 // 로그 추가 함수
 function addLog(log) {
-  // 제외 패턴 체크
   const targetUrl = log.request?.targetUrl || log.request?.path || '';
-  if (LOG_EXCLUDE_PATTERNS.some((pattern) => targetUrl.includes(pattern))) {
-    return null;
-  }
+  const isAdsLog = LOG_EXCLUDE_PATTERNS.some((pattern) => targetUrl.includes(pattern));
 
   const logEntry = {
     id: Date.now() + Math.random(),
     timestamp: new Date().toISOString(),
     ...log,
   };
+
+  if (isAdsLog) {
+    // Ads 로그는 별도 저장소에 저장
+    adsLogs.push(logEntry);
+    if (adsLogs.length > MAX_LOGS) {
+      adsLogs.shift();
+    }
+    broadcastAdsLog(logEntry);
+    return logEntry;
+  }
+
   logs.push(logEntry);
 
   // 최대 개수 초과 시 오래된 로그 제거
@@ -59,6 +74,19 @@ function broadcastLog(log) {
   });
 }
 
+// Ads SSE 브로드캐스트
+function broadcastAdsLog(log) {
+  console.log(`[ADS SSE] Broadcasting to ${adsSseClients.size} clients`);
+  const data = JSON.stringify(log);
+  adsSseClients.forEach((client) => {
+    try {
+      client.write(`data: ${data}\n\n`);
+    } catch (e) {
+      console.error('[ADS SSE] Broadcast error:', e.message);
+    }
+  });
+}
+
 // CORS 설정 (proxy-web에서 접근 허용)
 app.use(cors());
 
@@ -66,6 +94,31 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.raw({ type: '*/*', limit: '50mb' }));
+
+// 설정 로드
+function loadSettings() {
+  try {
+    if (fs.existsSync(SETTINGS_FILE)) {
+      const data = fs.readFileSync(SETTINGS_FILE, 'utf-8');
+      return JSON.parse(data);
+    }
+  } catch (error) {
+    console.error('[Load Error] 설정 로드 실패:', error.message);
+  }
+  return { globalDelay: 0 };
+}
+
+// 설정 저장
+function saveSettings() {
+  try {
+    fs.writeFileSync(SETTINGS_FILE, JSON.stringify(settings, null, 2), 'utf-8');
+    console.log(`[Saved] 설정이 ${SETTINGS_FILE}에 저장되었습니다.`);
+  } catch (error) {
+    console.error('[Save Error] 설정 저장 실패:', error.message);
+  }
+}
+
+let settings = loadSettings();
 
 // 파일에서 API 목록 로드 (기존 fakeResponse → fakeResponses 마이그레이션 포함)
 function loadApiList() {
@@ -82,6 +135,11 @@ function loadApiList() {
             ...rest,
             fakeResponses: [{ name: 'Default', body: fakeResponse, isActive: true }],
           };
+        }
+        // delay 필드 마이그레이션 (undefined → null: global delay 사용)
+        if (api.delay === undefined) {
+          migrated = true;
+          return { ...api, delay: null };
         }
         return api;
       });
@@ -133,7 +191,7 @@ function isDuplicateApi(baseUrl, apiPath, query, body, excludeId = null) {
 
 // API 저장 엔드포인트
 app.post('/api/add-proxy-api', (req, res) => {
-  const { baseUrl, path, query, body, fakeResponses } = req.body;
+  const { baseUrl, path, query, body, fakeResponses, delay } = req.body;
 
   if (!baseUrl || !path || !fakeResponses || fakeResponses.length === 0) {
     return res.status(400).json({ error: 'baseUrl, path, fakeResponses는 필수입니다.' });
@@ -156,6 +214,7 @@ app.post('/api/add-proxy-api', (req, res) => {
     path,
     query: query || '',
     body: body || '',
+    delay: delay !== undefined && delay !== null && delay !== '' ? Number(delay) : null,
     fakeResponses,
     createdAt: new Date().toISOString(),
   };
@@ -187,7 +246,7 @@ app.get('/api/get-proxy-api/:id', (req, res) => {
 // API 수정 엔드포인트
 app.put('/api/update-proxy-api/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const { baseUrl, path, query, body, fakeResponses } = req.body;
+  const { baseUrl, path, query, body, fakeResponses, delay } = req.body;
 
   if (!baseUrl || !path || !fakeResponses || fakeResponses.length === 0) {
     return res.status(400).json({ error: 'baseUrl, path, fakeResponses는 필수입니다.' });
@@ -211,6 +270,7 @@ app.put('/api/update-proxy-api/:id', (req, res) => {
     path,
     query: query || '',
     body: body || '',
+    delay: delay !== undefined && delay !== null && delay !== '' ? Number(delay) : null,
     fakeResponses,
     updatedAt: new Date().toISOString(),
   };
@@ -243,6 +303,44 @@ app.patch('/api/switch-response/:id', (req, res) => {
   console.log(`[Response Switched] ${api.baseUrl}${api.path} → ${api.fakeResponses[responseIndex].name}`);
 
   res.json({ message: 'Active response가 변경되었습니다.', data: api });
+});
+
+// 설정 조회 엔드포인트
+app.get('/api/settings', (req, res) => {
+  res.json(settings);
+});
+
+// 설정 변경 엔드포인트
+app.patch('/api/settings', (req, res) => {
+  const { globalDelay } = req.body;
+
+  if (globalDelay !== undefined) {
+    settings.globalDelay = Number(globalDelay) || 0;
+  }
+
+  saveSettings();
+  console.log(`[Settings Updated] globalDelay: ${settings.globalDelay}ms`);
+
+  res.json({ message: '설정이 변경되었습니다.', data: settings });
+});
+
+// Delay 변경 엔드포인트
+app.patch('/api/update-delay/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const { delay } = req.body;
+
+  const api = apiList.find((item) => item.id === id);
+  if (!api) {
+    return res.status(404).json({ error: 'API를 찾을 수 없습니다.' });
+  }
+
+  api.delay = delay !== undefined && delay !== null && delay !== '' ? Number(delay) : null;
+  api.updatedAt = new Date().toISOString();
+
+  saveApiList();
+  console.log(`[Delay Updated] ${api.baseUrl}${api.path} → ${api.delay !== null ? api.delay + 'ms' : 'Global'}`);
+
+  res.json({ message: 'Delay가 변경되었습니다.', data: api });
 });
 
 // API 삭제 엔드포인트
@@ -322,6 +420,69 @@ app.get('/api/logs/:id', (req, res) => {
 
   if (!log) {
     return res.status(404).json({ error: '로그를 찾을 수 없습니다.' });
+  }
+
+  res.json(log);
+});
+
+// === Ads 로그 엔드포인트 ===
+
+// Ads 로그 목록 조회
+app.get('/api/ads-logs', (req, res) => {
+  const limit = parseInt(req.query.limit) || 100;
+  const offset = parseInt(req.query.offset) || 0;
+
+  const reversedLogs = [...adsLogs].reverse();
+  const paginatedLogs = reversedLogs.slice(offset, offset + limit);
+
+  res.json({
+    total: adsLogs.length,
+    logs: paginatedLogs,
+  });
+});
+
+// Ads 로그 초기화
+app.delete('/api/ads-logs', (req, res) => {
+  adsLogs.length = 0;
+  res.json({ message: 'Ads 로그가 초기화되었습니다.' });
+});
+
+// Ads 로그 SSE 스트리밍
+app.get('/api/ads-logs/stream', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.flushHeaders();
+
+  adsSseClients.add(res);
+  console.log(`[ADS SSE] Client connected. Total clients: ${adsSseClients.size}`);
+
+  res.write(`data: ${JSON.stringify({ type: 'connected', message: 'Ads SSE connected' })}\n\n`);
+
+  const pingInterval = setInterval(() => {
+    try {
+      res.write(':ping\n\n');
+    } catch (e) {
+      clearInterval(pingInterval);
+    }
+  }, 15000);
+
+  req.on('close', () => {
+    adsSseClients.delete(res);
+    clearInterval(pingInterval);
+    console.log(`[ADS SSE] Client disconnected. Total clients: ${adsSseClients.size}`);
+  });
+});
+
+// 단일 Ads 로그 조회
+app.get('/api/ads-logs/:id', (req, res) => {
+  const id = parseFloat(req.params.id);
+  const log = adsLogs.find((l) => l.id === id);
+
+  if (!log) {
+    return res.status(404).json({ error: 'Ads 로그를 찾을 수 없습니다.' });
   }
 
   res.json(log);
@@ -593,11 +754,22 @@ app.all('/', async (req, res) => {
     const fakeBody = activeResponse ? activeResponse.body : matchedApi.fakeResponses[0].body;
     const responseName = activeResponse ? activeResponse.name : matchedApi.fakeResponses[0].name;
 
+    // effective delay: per-API delay가 설정되어 있으면 우선, 아니면 global delay 사용
+    const effectiveDelay = matchedApi.delay !== null ? matchedApi.delay : settings.globalDelay;
+
     console.log(`\n>>> [FAKE RESPONSE MATCHED] <<<`);
     console.log(`Matched API ID: ${matchedApi.id}`);
     console.log(`Active Response: "${responseName}"`);
+    if (effectiveDelay > 0) {
+      console.log(`Delay: ${effectiveDelay}ms (${matchedApi.delay !== null ? 'per-API' : 'global'})`);
+    }
     console.log(`Returning fake response for: ${matchedApi.baseUrl}${matchedApi.path}`);
     console.log(`Fake Response: ${fakeBody}\n`);
+
+    // 지연 시간 적용
+    if (effectiveDelay > 0) {
+      await new Promise(resolve => setTimeout(resolve, effectiveDelay));
+    }
 
     // 통합 로그 저장 (Fake Response)
     addLog({
@@ -616,6 +788,7 @@ app.all('/', async (req, res) => {
         isFake: true,
         matchedApiId: matchedApi.id,
         responseName: responseName,
+        delay: effectiveDelay,
         headers: { 'content-type': 'application/json' },
         body: fakeBody,
       },

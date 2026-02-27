@@ -15,6 +15,7 @@ interface ProxyApi {
   path: string;
   query: string;
   body: string;
+  delay: number | null;
   fakeResponses: FakeResponse[];
   createdAt: string;
 }
@@ -24,6 +25,11 @@ export default function ApiListPage() {
   const [apiList, setApiList] = useState<ProxyApi[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [editingDelayId, setEditingDelayId] = useState<number | null>(null);
+  const [editingDelayValue, setEditingDelayValue] = useState<string>("");
+  const [globalDelay, setGlobalDelay] = useState<number>(0);
+  const [editingGlobalDelay, setEditingGlobalDelay] = useState(false);
+  const [editingGlobalDelayValue, setEditingGlobalDelayValue] = useState<number>(0);
 
   const handleDelete = async (e: React.MouseEvent, id: number) => {
     e.stopPropagation();
@@ -68,6 +74,67 @@ export default function ApiListPage() {
     }
   };
 
+  const handleDelayClick = (e: React.MouseEvent, api: ProxyApi) => {
+    e.stopPropagation();
+    setEditingDelayId(api.id);
+    setEditingDelayValue(api.delay !== null ? String(api.delay) : "");
+  };
+
+  const handleDelaySave = async (e: React.MouseEvent | React.KeyboardEvent, apiId: number) => {
+    e.stopPropagation();
+    const delayValue = editingDelayValue.trim() === "" ? null : parseInt(editingDelayValue) || 0;
+    try {
+      const response = await fetch(`http://localhost:3000/api/update-delay/${apiId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ delay: delayValue }),
+      });
+
+      if (response.ok) {
+        const { data } = await response.json();
+        setApiList((prev) =>
+          prev.map((api) => (api.id === apiId ? data : api))
+        );
+      }
+    } catch (error) {
+      alert("Delay 변경 중 오류가 발생했습니다.");
+    }
+    setEditingDelayId(null);
+  };
+
+  const handleDelayCancel = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingDelayId(null);
+  };
+
+  const fetchSettings = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/settings");
+      if (response.ok) {
+        const data = await response.json();
+        setGlobalDelay(data.globalDelay || 0);
+      }
+    } catch {}
+  };
+
+  const handleGlobalDelaySave = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/settings", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ globalDelay: editingGlobalDelayValue }),
+      });
+
+      if (response.ok) {
+        const { data } = await response.json();
+        setGlobalDelay(data.globalDelay);
+      }
+    } catch {
+      alert("Global Delay 변경 중 오류가 발생했습니다.");
+    }
+    setEditingGlobalDelay(false);
+  };
+
   const fetchApiList = async () => {
     try {
       setLoading(true);
@@ -87,6 +154,7 @@ export default function ApiListPage() {
 
   useEffect(() => {
     fetchApiList();
+    fetchSettings();
   }, []);
 
   if (loading) {
@@ -115,14 +183,63 @@ export default function ApiListPage() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">API List</h1>
         <button
-          onClick={fetchApiList}
+          onClick={() => { fetchApiList(); fetchSettings(); }}
           className="px-4 py-2 bg-gray-200 text-black rounded-lg hover:bg-gray-300 transition-colors"
         >
           새로고침
         </button>
+      </div>
+
+      {/* Global Delay 설정 */}
+      <div className="mb-6 p-3 bg-gray-50 border border-gray-200 rounded-lg flex items-center gap-3">
+        <span className="text-sm font-medium text-gray-700">Global Delay:</span>
+        {editingGlobalDelay ? (
+          <div className="flex items-center gap-1">
+            <input
+              type="number"
+              value={editingGlobalDelayValue}
+              onChange={(e) => setEditingGlobalDelayValue(parseInt(e.target.value) || 0)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleGlobalDelaySave();
+                if (e.key === "Escape") setEditingGlobalDelay(false);
+              }}
+              min={0}
+              className="w-24 px-2 py-1 text-sm border border-blue-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+              autoFocus
+            />
+            <span className="text-xs text-gray-500">ms</span>
+            <button
+              onClick={handleGlobalDelaySave}
+              className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+            >
+              OK
+            </button>
+            <button
+              onClick={() => setEditingGlobalDelay(false)}
+              className="px-2 py-1 text-xs bg-gray-200 text-gray-600 rounded hover:bg-gray-300 cursor-pointer"
+            >
+              취소
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => {
+              setEditingGlobalDelay(true);
+              setEditingGlobalDelayValue(globalDelay);
+            }}
+            className={`px-3 py-1 text-sm font-medium rounded-full border transition-colors cursor-pointer ${
+              globalDelay > 0
+                ? "bg-amber-100 text-amber-800 border-amber-300"
+                : "bg-gray-100 text-gray-500 border-gray-300 hover:bg-gray-200"
+            }`}
+          >
+            {globalDelay > 0 ? `${globalDelay}ms` : "없음 (0ms)"}
+          </button>
+        )}
+        <span className="text-xs text-gray-400">개별 API에 Delay가 설정되지 않은 경우 적용됩니다.</span>
       </div>
 
       {apiList.length === 0 ? (
@@ -158,6 +275,51 @@ export default function ApiListPage() {
                     </pre>
                   </div>
                 )}
+
+                {/* Delay 배지 */}
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="text-sm font-medium text-gray-600">Delay:</span>
+                  {editingDelayId === api.id ? (
+                    <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+                      <input
+                        type="text"
+                        value={editingDelayValue}
+                        onChange={(e) => setEditingDelayValue(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleDelaySave(e, api.id);
+                          if (e.key === "Escape") setEditingDelayId(null);
+                        }}
+                        placeholder="비우면 Global"
+                        className="w-32 px-2 py-1 text-xs border border-blue-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        autoFocus
+                      />
+                      <span className="text-xs text-gray-500">ms</span>
+                      <button
+                        onClick={(e) => handleDelaySave(e, api.id)}
+                        className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer"
+                      >
+                        OK
+                      </button>
+                      <button
+                        onClick={handleDelayCancel}
+                        className="px-2 py-1 text-xs bg-gray-200 text-gray-600 rounded hover:bg-gray-300 cursor-pointer"
+                      >
+                        취소
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={(e) => handleDelayClick(e, api)}
+                      className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors cursor-pointer ${
+                        api.delay !== null
+                          ? "bg-amber-100 text-amber-800 border-amber-300"
+                          : "bg-gray-100 text-gray-500 border-gray-300 hover:bg-gray-200"
+                      }`}
+                    >
+                      {api.delay !== null ? `${api.delay}ms` : `Global (${globalDelay}ms)`}
+                    </button>
+                  )}
+                </div>
 
                 {/* Response 칩 목록 */}
                 {api.fakeResponses && api.fakeResponses.length > 0 && (

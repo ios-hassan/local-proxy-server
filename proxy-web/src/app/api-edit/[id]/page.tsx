@@ -20,6 +20,7 @@ export default function ApiEditPage() {
     query: "",
     body: "",
   });
+  const [delayValue, setDelayValue] = useState<string>("");
   const [fakeResponses, setFakeResponses] = useState<FakeResponseItem[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ export default function ApiEditPage() {
           query: data.query || "",
           body: data.body || "",
         });
+        setDelayValue(data.delay !== null && data.delay !== undefined ? String(data.delay) : "");
         if (data.fakeResponses && data.fakeResponses.length > 0) {
           setFakeResponses(data.fakeResponses);
           const activeIdx = data.fakeResponses.findIndex((r: FakeResponseItem) => r.isActive);
@@ -122,7 +124,11 @@ export default function ApiEditPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formData, fakeResponses }),
+        body: JSON.stringify({
+          ...formData,
+          delay: delayValue.trim() === "" ? null : parseInt(delayValue) || 0,
+          fakeResponses,
+        }),
       });
 
       if (response.ok) {
@@ -207,6 +213,20 @@ export default function ApiEditPage() {
             rows={4}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Delay (ms) <span className="text-gray-400">(optional)</span>
+          </label>
+          <input
+            type="text"
+            value={delayValue}
+            onChange={(e) => setDelayValue(e.target.value.replace(/[^0-9]/g, ""))}
+            placeholder="비우면 Global Delay 적용"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <p className="text-xs text-gray-400 mt-1">비워두면 Global Delay가 적용됩니다. 0을 입력하면 지연 없이 즉시 응답합니다.</p>
         </div>
 
         {/* Fake Responses 탭 영역 */}

@@ -7,6 +7,7 @@ const menuItems = [
   { name: "API List", path: "/api-list" },
   { name: "API 추가", path: "/api-add" },
   { name: "Logs", path: "/logs" },
+  { name: "Ads Log", path: "/ads-log" },
   { name: "MobileAPI Preset", path: "/mobile-preset" },
 ];
 
