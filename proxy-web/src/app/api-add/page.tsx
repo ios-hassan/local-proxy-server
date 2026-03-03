@@ -7,6 +7,7 @@ interface FakeResponseItem {
   name: string;
   body: string;
   isActive: boolean;
+  statusCode: number;
 }
 
 export default function ApiAddPage() {
@@ -20,7 +21,7 @@ export default function ApiAddPage() {
   });
   const [delayValue, setDelayValue] = useState<string>("");
   const [fakeResponses, setFakeResponses] = useState<FakeResponseItem[]>([
-    { name: "Default", body: "", isActive: true },
+    { name: "Default", body: "", isActive: true, statusCode: 200 },
   ]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -68,9 +69,15 @@ export default function ApiAddPage() {
     );
   };
 
+  const handleResponseStatusCodeChange = (index: number, statusCode: number) => {
+    setFakeResponses((prev) =>
+      prev.map((r, i) => (i === index ? { ...r, statusCode } : r))
+    );
+  };
+
   const handleAddResponse = () => {
     const newName = `Response ${fakeResponses.length + 1}`;
-    setFakeResponses((prev) => [...prev, { name: newName, body: "", isActive: false }]);
+    setFakeResponses((prev) => [...prev, { name: newName, body: "", isActive: false, statusCode: 200 }]);
     setActiveTabIndex(fakeResponses.length);
   };
 
@@ -247,6 +254,17 @@ export default function ApiAddPage() {
                     value={fakeResponses[activeTabIndex].name}
                     onChange={(e) => handleResponseNameChange(activeTabIndex, e.target.value)}
                     placeholder="Response 이름"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div className="w-28">
+                  <label className="block text-xs text-gray-500 mb-1">Status Code</label>
+                  <input
+                    type="number"
+                    value={fakeResponses[activeTabIndex].statusCode}
+                    onChange={(e) => handleResponseStatusCodeChange(activeTabIndex, parseInt(e.target.value) || 200)}
+                    min={100}
+                    max={599}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>

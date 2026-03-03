@@ -750,9 +750,10 @@ app.all('/', async (req, res) => {
   const matchedApi = findMatchingApi(targetUrl, requestBody);
 
   if (matchedApi) {
-    const activeResponse = matchedApi.fakeResponses.find(r => r.isActive);
-    const fakeBody = activeResponse ? activeResponse.body : matchedApi.fakeResponses[0].body;
-    const responseName = activeResponse ? activeResponse.name : matchedApi.fakeResponses[0].name;
+    const activeResponse = matchedApi.fakeResponses.find(r => r.isActive) || matchedApi.fakeResponses[0];
+    const fakeBody = activeResponse.body;
+    const responseName = activeResponse.name;
+    const responseStatus = activeResponse.statusCode || 200;
 
     // effective delay: per-API delay가 설정되어 있으면 우선, 아니면 global delay 사용
     const effectiveDelay = matchedApi.delay !== null ? matchedApi.delay : settings.globalDelay;
@@ -784,7 +785,7 @@ app.all('/', async (req, res) => {
         body: requestBody,
       },
       response: {
-        status: 200,
+        status: responseStatus,
         isFake: true,
         matchedApiId: matchedApi.id,
         responseName: responseName,
@@ -795,7 +796,7 @@ app.all('/', async (req, res) => {
     });
 
     res.setHeader('Content-Type', 'application/json');
-    return res.send(fakeBody);
+    return res.status(responseStatus).send(fakeBody);
   }
 
   try {

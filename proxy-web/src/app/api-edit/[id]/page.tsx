@@ -7,6 +7,7 @@ interface FakeResponseItem {
   name: string;
   body: string;
   isActive: boolean;
+  statusCode: number;
 }
 
 export default function ApiEditPage() {
@@ -42,11 +43,14 @@ export default function ApiEditPage() {
         });
         setDelayValue(data.delay !== null && data.delay !== undefined ? String(data.delay) : "");
         if (data.fakeResponses && data.fakeResponses.length > 0) {
-          setFakeResponses(data.fakeResponses);
+          setFakeResponses(data.fakeResponses.map((r: FakeResponseItem) => ({
+            ...r,
+            statusCode: r.statusCode || 200,
+          })));
           const activeIdx = data.fakeResponses.findIndex((r: FakeResponseItem) => r.isActive);
           setActiveTabIndex(activeIdx >= 0 ? activeIdx : 0);
         } else {
-          setFakeResponses([{ name: "Default", body: "", isActive: true }]);
+          setFakeResponses([{ name: "Default", body: "", isActive: true, statusCode: 200 }]);
         }
       } catch (error) {
         alert("API를 불러오는데 실패했습니다.");
@@ -84,9 +88,15 @@ export default function ApiEditPage() {
     );
   };
 
+  const handleResponseStatusCodeChange = (index: number, statusCode: number) => {
+    setFakeResponses((prev) =>
+      prev.map((r, i) => (i === index ? { ...r, statusCode } : r))
+    );
+  };
+
   const handleAddResponse = () => {
     const newName = `Response ${fakeResponses.length + 1}`;
-    setFakeResponses((prev) => [...prev, { name: newName, body: "", isActive: false }]);
+    setFakeResponses((prev) => [...prev, { name: newName, body: "", isActive: false, statusCode: 200 }]);
     setActiveTabIndex(fakeResponses.length);
   };
 
@@ -273,6 +283,17 @@ export default function ApiEditPage() {
                       value={fakeResponses[activeTabIndex].name}
                       onChange={(e) => handleResponseNameChange(activeTabIndex, e.target.value)}
                       placeholder="Response 이름"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div className="w-28">
+                    <label className="block text-xs text-gray-500 mb-1">Status Code</label>
+                    <input
+                      type="number"
+                      value={fakeResponses[activeTabIndex].statusCode}
+                      onChange={(e) => handleResponseStatusCodeChange(activeTabIndex, parseInt(e.target.value) || 200)}
+                      min={100}
+                      max={599}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                   </div>

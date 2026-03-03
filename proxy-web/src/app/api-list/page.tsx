@@ -7,6 +7,7 @@ interface FakeResponse {
   name: string;
   body: string;
   isActive: boolean;
+  statusCode?: number;
 }
 
 interface ProxyApi {
@@ -336,7 +337,7 @@ export default function ApiListPage() {
                               : "bg-gray-100 text-gray-600 border-gray-300 hover:bg-gray-200"
                           }`}
                         >
-                          {resp.isActive && "✓ "}{resp.name}
+                          {resp.isActive && "✓ "}{resp.name} ({resp.statusCode || 200})
                         </button>
                       ))}
                     </div>
