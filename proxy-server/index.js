@@ -146,6 +146,11 @@ function loadApiList() {
           migrated = true;
           return { ...api, redirectUrl: '' };
         }
+        // isActive 필드 마이그레이션 (기본값: true)
+        if (api.isActive === undefined) {
+          migrated = true;
+          return { ...api, isActive: true };
+        }
         return api;
       });
       if (migrated) {
@@ -348,6 +353,24 @@ app.patch('/api/update-delay/:id', (req, res) => {
   console.log(`[Delay Updated] ${api.baseUrl}${api.path} → ${api.delay !== null ? api.delay + 'ms' : 'Global'}`);
 
   res.json({ message: 'Delay가 변경되었습니다.', data: api });
+});
+
+// API 활성/비활성 토글 엔드포인트
+app.patch('/api/toggle-active/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const api = apiList.find((item) => item.id === id);
+  if (!api) {
+    return res.status(404).json({ error: 'API를 찾을 수 없습니다.' });
+  }
+
+  api.isActive = !api.isActive;
+  api.updatedAt = new Date().toISOString();
+
+  saveApiList();
+  console.log(`[Toggle Active] ${api.baseUrl}${api.path} → ${api.isActive ? 'Active' : 'Inactive'}`);
+
+  res.json({ message: `API가 ${api.isActive ? '활성화' : '비활성화'}되었습니다.`, data: api });
 });
 
 // API 삭제 엔드포인트
@@ -645,6 +668,11 @@ function findMatchingApi(targetUrl, requestBody) {
     const query = url.search ? url.search.slice(1) : ''; // '?' 제거
 
     for (const api of apiList) {
+      // 비활성화된 API는 스킵
+      if (api.isActive === false) {
+        continue;
+      }
+
       // baseUrl과 path 매칭 (필수)
       if (api.baseUrl !== baseUrl || api.path !== path) {
         continue;

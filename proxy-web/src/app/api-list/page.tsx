@@ -18,6 +18,7 @@ interface ProxyApi {
   body: string;
   delay: number | null;
   redirectUrl?: string;
+  isActive?: boolean;
   fakeResponses: FakeResponse[];
   createdAt: string;
 }
@@ -107,6 +108,23 @@ export default function ApiListPage() {
   const handleDelayCancel = (e: React.MouseEvent) => {
     e.stopPropagation();
     setEditingDelayId(null);
+  };
+
+  const handleToggleActive = async (e: React.MouseEvent, apiId: number) => {
+    e.stopPropagation();
+    try {
+      const response = await fetch(`http://localhost:3000/api/toggle-active/${apiId}`, {
+        method: "PATCH",
+      });
+      if (response.ok) {
+        const { data } = await response.json();
+        setApiList((prev) =>
+          prev.map((api) => (api.id === apiId ? data : api))
+        );
+      }
+    } catch {
+      alert("상태 변경 중 오류가 발생했습니다.");
+    }
   };
 
   const fetchSettings = async () => {
@@ -254,13 +272,29 @@ export default function ApiListPage() {
               <div
                 key={api.id}
                 onClick={() => router.push(`/api-edit/${api.id}`)}
-                className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+                className={`border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer ${
+                  api.isActive === false
+                    ? "border-gray-300 bg-gray-50 opacity-60"
+                    : "border-gray-200"
+                }`}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
-                    {api.baseUrl}
-                  </span>
-                  <span className="font-mono text-sm">{api.path}</span>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded">
+                      {api.baseUrl}
+                    </span>
+                    <span className="font-mono text-sm">{api.path}</span>
+                  </div>
+                  <button
+                    onClick={(e) => handleToggleActive(e, api.id)}
+                    className={`px-3 py-1 text-xs font-medium rounded-full border transition-colors cursor-pointer ${
+                      api.isActive === false
+                        ? "bg-gray-200 text-gray-500 border-gray-300 hover:bg-green-50 hover:text-green-600 hover:border-green-300"
+                        : "bg-green-100 text-green-700 border-green-300 hover:bg-gray-100 hover:text-gray-500 hover:border-gray-300"
+                    }`}
+                  >
+                    {api.isActive === false ? "비활성" : "활성"}
+                  </button>
                 </div>
 
                 {api.query && (
