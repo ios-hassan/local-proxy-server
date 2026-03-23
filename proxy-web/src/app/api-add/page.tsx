@@ -19,6 +19,7 @@ export default function ApiAddPage() {
     query: "",
     body: "",
   });
+  const [redirectUrl, setRedirectUrl] = useState<string>("");
   const [delayValue, setDelayValue] = useState<string>("");
   const [fakeResponses, setFakeResponses] = useState<FakeResponseItem[]>([
     { name: "Default", body: "", isActive: true, statusCode: 200 },
@@ -102,10 +103,12 @@ export default function ApiAddPage() {
       return;
     }
 
-    const hasBody = fakeResponses.some((r) => r.body.trim() !== "");
-    if (!hasBody) {
-      alert("최소 하나의 Fake Response에 내용을 입력하세요.");
-      return;
+    if (!redirectUrl) {
+      const hasBody = fakeResponses.some((r) => r.body.trim() !== "");
+      if (!hasBody) {
+        alert("최소 하나의 Fake Response에 내용을 입력하세요.");
+        return;
+      }
     }
 
     setLoading(true);
@@ -118,6 +121,7 @@ export default function ApiAddPage() {
         body: JSON.stringify({
           ...formData,
           delay: delayValue.trim() === "" ? null : parseInt(delayValue) || 0,
+          redirectUrl,
           fakeResponses,
         }),
       });
@@ -167,6 +171,22 @@ export default function ApiAddPage() {
             placeholder="/api/users"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Redirect URL <span className="text-gray-400">(optional)</span>
+          </label>
+          <input
+            type="text"
+            value={redirectUrl}
+            onChange={(e) => setRedirectUrl(e.target.value)}
+            placeholder="https://other-server.com/api/users"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {redirectUrl && (
+            <p className="text-xs text-amber-600 mt-1">Redirect URL이 설정되면 Fake Response 대신 이 URL로 요청이 포워딩됩니다.</p>
+          )}
         </div>
 
         <div>

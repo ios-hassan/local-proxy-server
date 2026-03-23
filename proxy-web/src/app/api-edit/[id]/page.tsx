@@ -21,6 +21,7 @@ export default function ApiEditPage() {
     query: "",
     body: "",
   });
+  const [redirectUrl, setRedirectUrl] = useState<string>("");
   const [delayValue, setDelayValue] = useState<string>("");
   const [fakeResponses, setFakeResponses] = useState<FakeResponseItem[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
@@ -41,6 +42,7 @@ export default function ApiEditPage() {
           query: data.query || "",
           body: data.body || "",
         });
+        setRedirectUrl(data.redirectUrl || "");
         setDelayValue(data.delay !== null && data.delay !== undefined ? String(data.delay) : "");
         if (data.fakeResponses && data.fakeResponses.length > 0) {
           setFakeResponses(data.fakeResponses.map((r: FakeResponseItem) => ({
@@ -121,10 +123,12 @@ export default function ApiEditPage() {
       return;
     }
 
-    const hasBody = fakeResponses.some((r) => r.body.trim() !== "");
-    if (!hasBody) {
-      alert("최소 하나의 Fake Response에 내용을 입력하세요.");
-      return;
+    if (!redirectUrl) {
+      const hasBody = fakeResponses.some((r) => r.body.trim() !== "");
+      if (!hasBody) {
+        alert("최소 하나의 Fake Response에 내용을 입력하세요.");
+        return;
+      }
     }
 
     setSaving(true);
@@ -137,6 +141,7 @@ export default function ApiEditPage() {
         body: JSON.stringify({
           ...formData,
           delay: delayValue.trim() === "" ? null : parseInt(delayValue) || 0,
+          redirectUrl,
           fakeResponses,
         }),
       });
@@ -195,6 +200,22 @@ export default function ApiEditPage() {
             placeholder="/api/users"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">
+            Redirect URL <span className="text-gray-400">(optional)</span>
+          </label>
+          <input
+            type="text"
+            value={redirectUrl}
+            onChange={(e) => setRedirectUrl(e.target.value)}
+            placeholder="https://other-server.com/api/users"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {redirectUrl && (
+            <p className="text-xs text-amber-600 mt-1">Redirect URL이 설정되면 Fake Response 대신 이 URL로 요청이 포워딩됩니다.</p>
+          )}
         </div>
 
         <div>

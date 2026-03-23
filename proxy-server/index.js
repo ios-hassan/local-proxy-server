@@ -141,6 +141,11 @@ function loadApiList() {
           migrated = true;
           return { ...api, delay: null };
         }
+        // redirectUrl 필드 마이그레이션
+        if (api.redirectUrl === undefined) {
+          migrated = true;
+          return { ...api, redirectUrl: '' };
+        }
         return api;
       });
       if (migrated) {
@@ -191,7 +196,7 @@ function isDuplicateApi(baseUrl, apiPath, query, body, excludeId = null) {
 
 // API 저장 엔드포인트
 app.post('/api/add-proxy-api', (req, res) => {
-  const { baseUrl, path, query, body, fakeResponses, delay } = req.body;
+  const { baseUrl, path, query, body, fakeResponses, delay, redirectUrl } = req.body;
 
   if (!baseUrl || !path || !fakeResponses || fakeResponses.length === 0) {
     return res.status(400).json({ error: 'baseUrl, path, fakeResponses는 필수입니다.' });
@@ -215,6 +220,7 @@ app.post('/api/add-proxy-api', (req, res) => {
     query: query || '',
     body: body || '',
     delay: delay !== undefined && delay !== null && delay !== '' ? Number(delay) : null,
+    redirectUrl: redirectUrl || '',
     fakeResponses,
     createdAt: new Date().toISOString(),
   };
@@ -246,7 +252,7 @@ app.get('/api/get-proxy-api/:id', (req, res) => {
 // API 수정 엔드포인트
 app.put('/api/update-proxy-api/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  const { baseUrl, path, query, body, fakeResponses, delay } = req.body;
+  const { baseUrl, path, query, body, fakeResponses, delay, redirectUrl } = req.body;
 
   if (!baseUrl || !path || !fakeResponses || fakeResponses.length === 0) {
     return res.status(400).json({ error: 'baseUrl, path, fakeResponses는 필수입니다.' });
@@ -271,6 +277,7 @@ app.put('/api/update-proxy-api/:id', (req, res) => {
     query: query || '',
     body: body || '',
     delay: delay !== undefined && delay !== null && delay !== '' ? Number(delay) : null,
+    redirectUrl: redirectUrl || '',
     fakeResponses,
     updatedAt: new Date().toISOString(),
   };
@@ -705,6 +712,7 @@ app.all('/', async (req, res) => {
   // req.query.target 대신 원본 URL에서 target 파라미터 추출
   // Express가 query string을 분리하는 문제 방지
   const fullUrl = req.originalUrl;
+  console.log("fullUrl:", fullUrl);
   const targetMatch = fullUrl.match(/[?&]target=(.+)/);
 
   if (!targetMatch) {
@@ -750,13 +758,110 @@ app.all('/', async (req, res) => {
   const matchedApi = findMatchingApi(targetUrl, requestBody);
 
   if (matchedApi) {
+    // effective delay: per-API delay가 설정되어 있으면 우선, 아니면 global delay 사용
+    const effectiveDelay = matchedApi.delay !== null ? matchedApi.delay : settings.globalDelay;
+
+    // redirectUrl이 설정되어 있으면 해당 URL로 포워딩
+    if (matchedApi.redirectUrl) {
+      console.log(`\n>>> [REDIRECT MATCHED] <<<`);
+      console.log(`Matched API ID: ${matchedApi.id}`);
+      console.log(`Redirect URL: ${matchedApi.redirectUrl}`);
+      if (effectiveDelay > 0) {
+        console.log(`Delay: ${effectiveDelay}ms (${matchedApi.delay !== null ? 'per-API' : 'global'})`);
+      }
+      console.log(`Forwarding request: ${targetUrl} → ${matchedApi.redirectUrl}`);
+
+      // 지연 시간 적용
+      if (effectiveDelay > 0) {
+        await new Promise(resolve => setTimeout(resolve, effectiveDelay));
+      }
+
+      try {
+        const headers = { ...req.headers };
+        delete headers['host'];
+        delete headers['content-length'];
+
+        const fetchOptions = {
+          method: req.method,
+          headers: headers,
+        };
+
+        if (requestBody) {
+          fetchOptions.body = requestBody;
+        }
+
+        const redirectResponse = await fetch(matchedApi.redirectUrl, fetchOptions);
+
+        const responseHeaders = {};
+        redirectResponse.headers.forEach((value, key) => {
+          responseHeaders[key] = value;
+          if (!['content-encoding', 'transfer-encoding'].includes(key.toLowerCase())) {
+            res.setHeader(key, value);
+          }
+        });
+
+        res.status(redirectResponse.status);
+        const responseBody = await redirectResponse.text();
+
+        console.log(`[REDIRECT RESPONSE] Status: ${redirectResponse.status}`);
+        console.log(`Body: ${responseBody.substring(0, 500)}${responseBody.length > 500 ? '...' : ''}\n`);
+
+        addLog({
+          type: 'PROXY_REQUEST',
+          request: {
+            method: req.method,
+            targetUrl: targetUrl,
+            baseUrl: `${parsedUrl.protocol}//${parsedUrl.host}`,
+            path: parsedUrl.pathname,
+            query: parsedUrl.search || '',
+            headers: req.headers,
+            body: requestBody,
+          },
+          response: {
+            status: redirectResponse.status,
+            isFake: false,
+            isRedirect: true,
+            redirectUrl: matchedApi.redirectUrl,
+            matchedApiId: matchedApi.id,
+            delay: effectiveDelay,
+            headers: responseHeaders,
+            body: responseBody,
+          },
+        });
+
+        return res.send(responseBody);
+      } catch (error) {
+        console.error('[Redirect Error]', error.message);
+
+        addLog({
+          type: 'PROXY_REQUEST',
+          request: {
+            method: req.method,
+            targetUrl: targetUrl,
+            baseUrl: `${parsedUrl.protocol}//${parsedUrl.host}`,
+            path: parsedUrl.pathname,
+            query: parsedUrl.search || '',
+            headers: req.headers,
+            body: requestBody,
+          },
+          response: {
+            status: 500,
+            isFake: false,
+            isRedirect: true,
+            redirectUrl: matchedApi.redirectUrl,
+            matchedApiId: matchedApi.id,
+            error: error.message,
+          },
+        });
+
+        return res.status(500).json({ error: `Redirect failed: ${error.message}` });
+      }
+    }
+
     const activeResponse = matchedApi.fakeResponses.find(r => r.isActive) || matchedApi.fakeResponses[0];
     const fakeBody = activeResponse.body;
     const responseName = activeResponse.name;
     const responseStatus = activeResponse.statusCode || 200;
-
-    // effective delay: per-API delay가 설정되어 있으면 우선, 아니면 global delay 사용
-    const effectiveDelay = matchedApi.delay !== null ? matchedApi.delay : settings.globalDelay;
 
     console.log(`\n>>> [FAKE RESPONSE MATCHED] <<<`);
     console.log(`Matched API ID: ${matchedApi.id}`);

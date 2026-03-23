@@ -17,6 +17,7 @@ interface ProxyApi {
   query: string;
   body: string;
   delay: number | null;
+  redirectUrl?: string;
   fakeResponses: FakeResponse[];
   createdAt: string;
 }
@@ -277,6 +278,14 @@ export default function ApiListPage() {
                   </div>
                 )}
 
+                {/* Redirect URL 표시 */}
+                {api.redirectUrl && (
+                  <div className="mb-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded-lg">
+                    <span className="text-xs font-medium text-amber-700">Redirect:</span>
+                    <span className="text-xs text-amber-600 ml-1 font-mono">{api.redirectUrl}</span>
+                  </div>
+                )}
+
                 {/* Delay 배지 */}
                 <div className="mb-2 flex items-center gap-2">
                   <span className="text-sm font-medium text-gray-600">Delay:</span>
@@ -345,7 +354,7 @@ export default function ApiListPage() {
                 )}
 
                 {/* 활성 Response 미리보기 */}
-                {activeResponse && (
+                {activeResponse && !api.redirectUrl && (
                   <div className="text-sm text-gray-600">
                     <span className="font-medium">Active Response ({activeResponse.name}):</span>
                     <pre className="mt-1 p-2 bg-green-50 rounded text-xs overflow-x-auto max-h-32">
