@@ -27,15 +27,21 @@ const adsSseClients = new Set();
 const ohsLogs = [];
 const ohsSseClients = new Set();
 
+// Log V2 로그 저장소 (메모리)
+const logV2Logs = [];
+const logV2SseClients = new Set();
+
 // 로그 분류 패턴
 const LOG_EXCLUDE_PATTERNS = ['/ads/tracker'];
+const LOG_V2_PATTERNS = ['/log/v2'];
 const OHS_LOG_PATTERNS = ['/log'];
 
 // 로그 추가 함수
 function addLog(log) {
   const targetUrl = log.request?.targetUrl || log.request?.path || '';
   const isAdsLog = LOG_EXCLUDE_PATTERNS.some((pattern) => targetUrl.includes(pattern));
-  const isOhsLog = OHS_LOG_PATTERNS.some((pattern) => targetUrl.includes(pattern));
+  const isLogV2 = LOG_V2_PATTERNS.some((pattern) => targetUrl.includes(pattern));
+  const isOhsLog = !isLogV2 && OHS_LOG_PATTERNS.some((pattern) => targetUrl.includes(pattern));
 
   const logEntry = {
     id: Date.now() + Math.random(),
@@ -44,7 +50,6 @@ function addLog(log) {
   };
 
   if (isAdsLog) {
-    // Ads 로그는 별도 저장소에 저장
     adsLogs.push(logEntry);
     if (adsLogs.length > MAX_LOGS) {
       adsLogs.shift();
@@ -53,8 +58,16 @@ function addLog(log) {
     return logEntry;
   }
 
+  if (isLogV2) {
+    logV2Logs.push(logEntry);
+    if (logV2Logs.length > MAX_LOGS) {
+      logV2Logs.shift();
+    }
+    broadcastLogV2(logEntry);
+    return logEntry;
+  }
+
   if (isOhsLog) {
-    // OHS 로그는 별도 저장소에 저장
     ohsLogs.push(logEntry);
     if (ohsLogs.length > MAX_LOGS) {
       ohsLogs.shift();
@@ -96,6 +109,18 @@ function broadcastAdsLog(log) {
       client.write(`data: ${data}\n\n`);
     } catch (e) {
       console.error('[ADS SSE] Broadcast error:', e.message);
+    }
+  });
+}
+
+// Log V2 SSE 브로드캐스트
+function broadcastLogV2(log) {
+  const data = JSON.stringify(log);
+  logV2SseClients.forEach((client) => {
+    try {
+      client.write(`data: ${data}\n\n`);
+    } catch (e) {
+      console.error('[LOG_V2 SSE] Broadcast error:', e.message);
     }
   });
 }
@@ -602,6 +627,63 @@ app.get('/api/ohs-logs/:id', (req, res) => {
 
   if (!log) {
     return res.status(404).json({ error: 'OHS 로그를 찾을 수 없습니다.' });
+  }
+
+  res.json(log);
+});
+
+// === Log V2 로그 엔드포인트 ===
+
+app.get('/api/log-v2-logs', (req, res) => {
+  const limit = parseInt(req.query.limit) || 100;
+  const offset = parseInt(req.query.offset) || 0;
+
+  const reversedLogs = [...logV2Logs].reverse();
+  const paginatedLogs = reversedLogs.slice(offset, offset + limit);
+
+  res.json({
+    total: logV2Logs.length,
+    logs: paginatedLogs,
+  });
+});
+
+app.delete('/api/log-v2-logs', (req, res) => {
+  logV2Logs.length = 0;
+  res.json({ message: 'Log V2 로그가 초기화되었습니다.' });
+});
+
+app.get('/api/log-v2-logs/stream', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.flushHeaders();
+
+  logV2SseClients.add(res);
+
+  res.write(`data: ${JSON.stringify({ type: 'connected', message: 'Log V2 SSE connected' })}\n\n`);
+
+  const pingInterval = setInterval(() => {
+    try {
+      res.write(':ping\n\n');
+    } catch (e) {
+      clearInterval(pingInterval);
+    }
+  }, 15000);
+
+  req.on('close', () => {
+    logV2SseClients.delete(res);
+    clearInterval(pingInterval);
+  });
+});
+
+app.get('/api/log-v2-logs/:id', (req, res) => {
+  const id = parseFloat(req.params.id);
+  const log = logV2Logs.find((l) => l.id === id);
+
+  if (!log) {
+    return res.status(404).json({ error: 'Log V2 로그를 찾을 수 없습니다.' });
   }
 
   res.json(log);
