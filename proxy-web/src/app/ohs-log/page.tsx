@@ -20,7 +20,7 @@ interface LogEntry {
   };
 }
 
-const LOG_ITEM_HEIGHT = 140;
+const LOG_ITEM_HEIGHT = 110;
 const BUFFER_SIZE = 5;
 
 export default function OhsLogPage() {
@@ -193,6 +193,23 @@ export default function OhsLogPage() {
     }
   };
 
+  const SUMMARY_KEYS = ["category", "action", "intent", "url", "params", "page_id"];
+
+  const extractSummary = (body: string | null | undefined): Record<string, unknown> | null => {
+    if (!body) return null;
+    try {
+      let parsed = typeof body === "string" ? JSON.parse(body) : body;
+      if (typeof parsed === "string") parsed = JSON.parse(parsed);
+      const result: Record<string, unknown> = {};
+      for (const key of SUMMARY_KEYS) {
+        if (parsed[key] !== undefined) result[key] = parsed[key];
+      }
+      return Object.keys(result).length > 0 ? result : null;
+    } catch {
+      return null;
+    }
+  };
+
   // HTTP 상태 코드 색상
   const getStatusColor = (status: number) => {
     if (status >= 200 && status < 300) return "bg-green-100 text-green-800";
@@ -314,21 +331,21 @@ export default function OhsLogPage() {
                   </span>
                 </div>
 
-                {/* 하단: Request Body / Response Body */}
-                <div className="flex gap-2 flex-1 min-h-0 overflow-hidden">
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs text-blue-600 font-medium">Req Body</span>
-                    <pre className="text-xs text-gray-500 font-mono truncate mt-0.5 bg-blue-50 rounded px-2 py-1 overflow-hidden max-h-16">
-                      {log.request.body || "-"}
-                    </pre>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="text-xs text-green-600 font-medium">Res Body</span>
-                    <pre className="text-xs text-gray-500 font-mono truncate mt-0.5 bg-green-50 rounded px-2 py-1 overflow-hidden max-h-16">
-                      {log.response.body || "-"}
-                    </pre>
-                  </div>
-                </div>
+                {/* 하단: Body 요약 (주요 키만 표시) */}
+                {(() => {
+                  const summary = extractSummary(log.request.body);
+                  if (!summary) return null;
+                  return (
+                    <div className="flex flex-wrap gap-x-3 gap-y-1 mt-1 text-xs">
+                      {Object.entries(summary).map(([key, value]) => (
+                        <span key={key} className="text-gray-600">
+                          <span className="font-medium text-gray-800">{key}:</span>{" "}
+                          <span className="text-gray-500">{typeof value === "object" ? JSON.stringify(value) : String(value)}</span>
+                        </span>
+                      ))}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           ))}
