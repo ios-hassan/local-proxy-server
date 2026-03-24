@@ -897,6 +897,7 @@ app.all('/', async (req, res) => {
         const headers = { ...req.headers };
         delete headers['host'];
         delete headers['content-length'];
+        delete headers['content-encoding'];
 
         const fetchOptions = {
           method: req.method,
@@ -1028,6 +1029,7 @@ app.all('/', async (req, res) => {
     // 프록시 관련 헤더 제거
     delete headers['host'];
     delete headers['content-length'];
+    delete headers['content-encoding'];
 
     // fetch 옵션 구성
     const fetchOptions = {
