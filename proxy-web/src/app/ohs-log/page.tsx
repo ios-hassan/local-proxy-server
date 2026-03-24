@@ -22,7 +22,7 @@ interface LogEntry {
 
 const LOG_ITEM_HEIGHT = 110;
 const BUFFER_SIZE = 5;
-const SUMMARY_KEYS = ["category", "action", "intent", "url", "params", "page_id"];
+const SUMMARY_KEYS = ["category", "action", "intent", "url", "params", "page_id", "object_section", "object_sectionId", "object_section_idx", "object_id", "object_idx", "object_url"];
 
 function parseBody(body: string | null | undefined): Record<string, unknown> | null {
   if (!body) return null;
@@ -179,9 +179,8 @@ function LogPanel({
                   return (
                     <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs">
                       {Object.entries(summary).map(([key, value]) => (
-                        <span key={key} className="text-gray-600">
-                          <span className="font-medium text-gray-800">{key}:</span>{" "}
-                          <span className="text-gray-500">{typeof value === "object" ? JSON.stringify(value) : String(value)}</span>
+                        <span key={key} className="text-gray-500">
+                          {key}: <span className="font-semibold text-gray-800">{typeof value === "object" ? JSON.stringify(value) : String(value)}</span>
                         </span>
                       ))}
                     </div>
