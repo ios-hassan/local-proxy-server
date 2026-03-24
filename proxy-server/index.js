@@ -37,24 +37,20 @@ function addLog(log) {
     ...log,
   };
 
+  // Ads 패턴 매칭 시 ads 로그 저장소에도 추가
   if (isAdsLog) {
-    // Ads 로그는 별도 저장소에 저장
     adsLogs.push(logEntry);
     if (adsLogs.length > MAX_LOGS) {
       adsLogs.shift();
     }
     broadcastAdsLog(logEntry);
-    return logEntry;
   }
 
+  // 모든 로그는 일반 로그에도 수집
   logs.push(logEntry);
-
-  // 최대 개수 초과 시 오래된 로그 제거
   if (logs.length > MAX_LOGS) {
     logs.shift();
   }
-
-  // SSE 클라이언트들에게 전송
   broadcastLog(logEntry);
 
   return logEntry;
