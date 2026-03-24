@@ -10,15 +10,17 @@ interface LogEntry {
   request: {
     method: string;
     targetUrl: string;
+    body?: string | null;
   };
   response: {
     status: number;
     isFake: boolean;
+    body?: string;
     error?: string;
   };
 }
 
-const LOG_ITEM_HEIGHT = 80;
+const LOG_ITEM_HEIGHT = 140;
 const BUFFER_SIZE = 5;
 
 export default function OhsLogPage() {
@@ -281,20 +283,18 @@ export default function OhsLogPage() {
           {virtualItems.items.map(({ log, style }) => (
             <div key={log.id} style={style} className="px-2 py-1">
               <div
-                className="bg-white border border-gray-200 rounded-lg px-4 py-2 h-full flex gap-3 cursor-pointer hover:bg-gray-50 hover:shadow-sm transition-all"
+                className="bg-white border border-gray-200 rounded-lg px-4 py-2 h-full flex flex-col gap-1 cursor-pointer hover:bg-gray-50 hover:shadow-sm transition-all overflow-hidden"
                 onClick={() => router.push(`/ohs-log/${log.id}`)}
               >
-                {/* 왼쪽: Method, Status, Badges */}
-                <div className="flex flex-col justify-center gap-1">
-                  <div className="flex items-center gap-2">
+                {/* 상단: Method, Status, URL, Timestamp */}
+                <div className="flex gap-3 items-center">
+                  <div className="flex items-center gap-2 shrink-0">
                     <span className={`px-2 py-0.5 rounded text-xs font-bold min-w-14 text-center ${getMethodColor(log.request.method)}`}>
                       {log.request.method}
                     </span>
                     <span className={`px-2 py-0.5 rounded text-xs font-medium min-w-10 text-center ${getStatusColor(log.response.status)}`}>
                       {log.response.status}
                     </span>
-                  </div>
-                  <div className="flex items-center gap-1">
                     {log.response.isFake && (
                       <span className="px-1.5 py-0.5 bg-purple-100 text-purple-800 rounded text-xs font-medium">
                         FAKE
@@ -306,20 +306,28 @@ export default function OhsLogPage() {
                       </span>
                     )}
                   </div>
-                </div>
-
-                {/* 가운데: URL (두 줄) */}
-                <div className="flex-1 flex items-center min-w-0">
-                  <span className="text-sm font-mono text-gray-700 line-clamp-2 break-all">
+                  <span className="text-sm font-mono text-gray-700 truncate flex-1">
                     {log.request.targetUrl}
                   </span>
-                </div>
-
-                {/* 오른쪽: Timestamp */}
-                <div className="flex items-center">
-                  <span className="text-xs text-gray-400 min-w-20 text-right">
+                  <span className="text-xs text-gray-400 shrink-0">
                     {new Date(log.timestamp).toLocaleTimeString()}
                   </span>
+                </div>
+
+                {/* 하단: Request Body / Response Body */}
+                <div className="flex gap-2 flex-1 min-h-0 overflow-hidden">
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs text-blue-600 font-medium">Req Body</span>
+                    <pre className="text-xs text-gray-500 font-mono truncate mt-0.5 bg-blue-50 rounded px-2 py-1 overflow-hidden max-h-16">
+                      {log.request.body || "-"}
+                    </pre>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs text-green-600 font-medium">Res Body</span>
+                    <pre className="text-xs text-gray-500 font-mono truncate mt-0.5 bg-green-50 rounded px-2 py-1 overflow-hidden max-h-16">
+                      {log.response.body || "-"}
+                    </pre>
+                  </div>
                 </div>
               </div>
             </div>
