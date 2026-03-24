@@ -23,13 +23,19 @@ const sseClients = new Set();
 const adsLogs = [];
 const adsSseClients = new Set();
 
-// 로그 제외 패턴
+// OHS 로그 저장소 (메모리)
+const ohsLogs = [];
+const ohsSseClients = new Set();
+
+// 로그 분류 패턴
 const LOG_EXCLUDE_PATTERNS = ['/ads/tracker'];
+const OHS_LOG_PATTERNS = ['/log'];
 
 // 로그 추가 함수
 function addLog(log) {
   const targetUrl = log.request?.targetUrl || log.request?.path || '';
   const isAdsLog = LOG_EXCLUDE_PATTERNS.some((pattern) => targetUrl.includes(pattern));
+  const isOhsLog = OHS_LOG_PATTERNS.some((pattern) => targetUrl.includes(pattern));
 
   const logEntry = {
     id: Date.now() + Math.random(),
@@ -37,16 +43,27 @@ function addLog(log) {
     ...log,
   };
 
-  // Ads 패턴 매칭 시 ads 로그 저장소에도 추가
   if (isAdsLog) {
+    // Ads 로그는 별도 저장소에 저장
     adsLogs.push(logEntry);
     if (adsLogs.length > MAX_LOGS) {
       adsLogs.shift();
     }
     broadcastAdsLog(logEntry);
+    return logEntry;
   }
 
-  // 모든 로그는 일반 로그에도 수집
+  if (isOhsLog) {
+    // OHS 로그는 별도 저장소에 저장
+    ohsLogs.push(logEntry);
+    if (ohsLogs.length > MAX_LOGS) {
+      ohsLogs.shift();
+    }
+    broadcastOhsLog(logEntry);
+    return logEntry;
+  }
+
+  // 일반 로그 저장
   logs.push(logEntry);
   if (logs.length > MAX_LOGS) {
     logs.shift();
@@ -79,6 +96,19 @@ function broadcastAdsLog(log) {
       client.write(`data: ${data}\n\n`);
     } catch (e) {
       console.error('[ADS SSE] Broadcast error:', e.message);
+    }
+  });
+}
+
+// OHS SSE 브로드캐스트
+function broadcastOhsLog(log) {
+  console.log(`[OHS SSE] Broadcasting to ${ohsSseClients.size} clients`);
+  const data = JSON.stringify(log);
+  ohsSseClients.forEach((client) => {
+    try {
+      client.write(`data: ${data}\n\n`);
+    } catch (e) {
+      console.error('[OHS SSE] Broadcast error:', e.message);
     }
   });
 }
@@ -509,6 +539,69 @@ app.get('/api/ads-logs/:id', (req, res) => {
 
   if (!log) {
     return res.status(404).json({ error: 'Ads 로그를 찾을 수 없습니다.' });
+  }
+
+  res.json(log);
+});
+
+// === OHS 로그 엔드포인트 ===
+
+// OHS 로그 목록 조회
+app.get('/api/ohs-logs', (req, res) => {
+  const limit = parseInt(req.query.limit) || 100;
+  const offset = parseInt(req.query.offset) || 0;
+
+  const reversedLogs = [...ohsLogs].reverse();
+  const paginatedLogs = reversedLogs.slice(offset, offset + limit);
+
+  res.json({
+    total: ohsLogs.length,
+    logs: paginatedLogs,
+  });
+});
+
+// OHS 로그 초기화
+app.delete('/api/ohs-logs', (req, res) => {
+  ohsLogs.length = 0;
+  res.json({ message: 'OHS 로그가 초기화되었습니다.' });
+});
+
+// OHS 로그 SSE 스트리밍
+app.get('/api/ohs-logs/stream', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache, no-transform');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('X-Accel-Buffering', 'no');
+  res.flushHeaders();
+
+  ohsSseClients.add(res);
+  console.log(`[OHS SSE] Client connected. Total clients: ${ohsSseClients.size}`);
+
+  res.write(`data: ${JSON.stringify({ type: 'connected', message: 'OHS SSE connected' })}\n\n`);
+
+  const pingInterval = setInterval(() => {
+    try {
+      res.write(':ping\n\n');
+    } catch (e) {
+      clearInterval(pingInterval);
+    }
+  }, 15000);
+
+  req.on('close', () => {
+    ohsSseClients.delete(res);
+    clearInterval(pingInterval);
+    console.log(`[OHS SSE] Client disconnected. Total clients: ${ohsSseClients.size}`);
+  });
+});
+
+// 단일 OHS 로그 조회
+app.get('/api/ohs-logs/:id', (req, res) => {
+  const id = parseFloat(req.params.id);
+  const log = ohsLogs.find((l) => l.id === id);
+
+  if (!log) {
+    return res.status(404).json({ error: 'OHS 로그를 찾을 수 없습니다.' });
   }
 
   res.json(log);
